@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3ebfac7616f133d4f9d2de1b350d181a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - arCamera: {instanceID: 0}
+  - countText: {instanceID: 0}
+  - throwFrom: {instanceID: 0}
+  - ball: {fileID: 2770467949074998997, guid: 972a330949bd8aa4e8658fd783de26bb, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
