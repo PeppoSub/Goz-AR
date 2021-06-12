@@ -257,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7467172350779778577, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7467172350779778588, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
       propertyPath: m_Pivot.x
@@ -343,8 +343,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7467172351509586258, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
+      propertyPath: m_Text
+      value: Tap to place Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841953299751151852, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
+      propertyPath: m_Text
+      value: Enjoy AR
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
+--- !u!1 &188102394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7841953299751151854, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
+  m_PrefabInstance: {fileID: 188102393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &188102395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7467172351509586260, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
+  m_PrefabInstance: {fileID: 188102393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &188102396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6136832320289763753, guid: 4a40449defe85b24abc7c14d08769558, type: 3}
+  m_PrefabInstance: {fileID: 188102393}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &697618554
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +533,7 @@ GameObject:
   - component: {fileID: 765297068}
   - component: {fileID: 765297067}
   - component: {fileID: 765297074}
-  - component: {fileID: 765297066}
+  - component: {fileID: 765297071}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -518,29 +541,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &765297066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765297065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3e6e753cfd8e4040ac30ebad3546b8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theRaycastManager: {fileID: 765297067}
-  thePlaneManager: {fileID: 765297068}
-  theCamera: {fileID: 69954376}
-  thePlacementIndicatorPrefab: {fileID: 4856193321818079531, guid: f5a686031502d464ab2bb4913cc61740, type: 3}
-  theObjectsToPlace:
-  - {fileID: 5992691649689475551, guid: ec0cca0ecaa5b194ebc2d8bd020a8c26, type: 3}
-  - {fileID: 5863523973235140440, guid: f76a5614a0c324e4ca20d0d13269e163, type: 3}
-  - {fileID: 8829150776391733023, guid: 9fc98f491ad5fbf459e4f8f3a780bb02, type: 3}
-  - {fileID: 88337149376259163, guid: e9d00774af379c64aa0c113fd67c054b, type: 3}
-  - {fileID: 5863523973235140440, guid: 3d06d60da2d0d194bbab2bc0c1061bea, type: 3}
-  theCanvas: {fileID: 1919090318}
 --- !u!114 &765297067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +596,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &765297071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765297065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16146386e4d80604791cdab70328f29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theRaycastManager: {fileID: 765297067}
+  thePlaneManager: {fileID: 765297068}
+  theCamera: {fileID: 69954376}
+  thePlacementIndicatorPrefab: {fileID: 4856193321818079531, guid: f5a686031502d464ab2bb4913cc61740, type: 3}
+  theObjectToPlace: {fileID: 88337149376259163, guid: e9d00774af379c64aa0c113fd67c054b, type: 3}
+  theCanvas: {fileID: 1919090318}
+  helpStep0: {fileID: 188102396}
+  helpStep1: {fileID: 188102395}
+  helpStep2: {fileID: 188102394}
 --- !u!82 &765297074
 AudioSource:
   m_ObjectHideFlags: 0
@@ -902,6 +923,14 @@ PrefabInstance:
     - target: {fileID: 3407303984271222348, guid: 5e9c6f32dda71de439d29f703349bf00, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407303984271222350, guid: 5e9c6f32dda71de439d29f703349bf00, type: 3}
+      propertyPath: goal
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407303984271222350, guid: 5e9c6f32dda71de439d29f703349bf00, type: 3}
+      propertyPath: initlife
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5722010362706995579, guid: 5e9c6f32dda71de439d29f703349bf00, type: 3}
       propertyPath: theCamera

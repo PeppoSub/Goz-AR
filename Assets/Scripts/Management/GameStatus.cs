@@ -93,10 +93,7 @@ public class GameStatus : MonoBehaviour
 
         if (gotHit)
         {
-            var color = bloodyDamage.GetComponent<Image>().color;
-            color.a = 0.6f;
-            bloodyDamage.GetComponent<Image>().color = color;
-
+            bloodyDamage.SetActive(true);
             gotHit = false;
         }
     }
@@ -131,13 +128,17 @@ public class GameStatus : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.GetComponent<FlyScript>() != null)
+            if (enemy.GetComponent<Damaged>() != null)
             {
-                enemy.GetComponent<FlyScript>().enabled = false;
+                enemy.GetComponent<Damaged>().enabled = false;
             }
-            if (enemy.GetComponent<SlideScript>() != null)
+            if (enemy.GetComponent<AirMove>() != null)
             {
-                enemy.GetComponent<SlideScript>().enabled = false;
+                enemy.GetComponent<AirMove>().enabled = false;
+            }
+            if (enemy.GetComponent<GroundMove>() != null)
+            {
+                enemy.GetComponent<GroundMove>().enabled = false;
             }
         }
 

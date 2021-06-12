@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class FlashScript : MonoBehaviour
 {
-    public float dimmPerFrame = 0.05f;
+    public float initTransparency = 0.7f;
+    public float dimmPerFrame = 0.035f;
  
     void Start()
     {
         var color = this.GetComponent<Image>().color;
-        color.a = 0f;
+        color.a = initTransparency;
         this.GetComponent<Image>().color = color;
     }
 
@@ -21,6 +22,10 @@ public class FlashScript : MonoBehaviour
         {
             color.a -= dimmPerFrame;
             this.GetComponent<Image>().color = color;
+        }
+        else
+        {
+            gameObject.SetActive(false);
         }
         // Debug.Log("color.a = " + color.a.ToString()); 
     }

@@ -16,7 +16,7 @@ namespace UnityStandardAssets.Effects
             m_Systems = GetComponentsInChildren<ParticleSystem>();
         }
 
-
+        [Obsolete]
         public void Extinguish()
         {
             foreach (var system in m_Systems)

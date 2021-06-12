@@ -9,11 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/DemoStart.unity
     guid: fa39e5fb0b63ffc4fbb747b8400ef50c
   - enabled: 1
+    path: Assets/Scenes/DemoLev1.unity
+    guid: 89cf24187505b2c4c82f496e4eabc604
+  - enabled: 1
+    path: Assets/Scenes/DemoLev2.unity
+    guid: 5a8841a590c1b254f982c742afa095a6
+  - enabled: 1
+    path: Assets/Scenes/DemoLev3.unity
+    guid: 85e063796a175564f97017e71135ddc4
+  - enabled: 1
     path: Assets/Scenes/DemoTester.unity
     guid: 51dde55b62443604e9a748786ac51fb1
   - enabled: 1
-    path: Assets/Scenes/DemoPost.unity
-    guid: 2c6fa613315f77a4481b55fec8dd20f4
+    path: Assets/Scenes/DemoPortal.unity
+    guid: ef2a659af1872c647814fdcadee29ba3
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 268abfba519c1aa46888c685ae62b43e, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 7eff60c6dfc88a945a2561c6303c21fd, type: 2}

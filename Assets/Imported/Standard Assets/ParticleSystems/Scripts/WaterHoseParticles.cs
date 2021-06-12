@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Effects
             m_ParticleSystem = GetComponent<ParticleSystem>();
         }
 
-
+        [Obsolete]
         private void OnParticleCollision(GameObject other)
         {
             int safeLength = m_ParticleSystem.GetSafeCollisionEventSize();
