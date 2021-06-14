@@ -1,8 +1,9 @@
 ﻿using PixelPlay.OffScreenIndicator;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using UnityEngine;
+
 
 /// <summary>
 /// Attach the script to the off screen indicator panel.
@@ -14,6 +15,8 @@ public class OffScreenIndicator : MonoBehaviour
     [Tooltip("Distance offset of the indicators from the centre of the screen")]
     [SerializeField] private float screenBoundOffset = 0.9f;
 
+    public GameObject theARCamera;   // added for compatibility with AR
+
     private Camera mainCamera;
     private Vector3 screenCentre;
     private Vector3 screenBounds;
@@ -24,7 +27,7 @@ public class OffScreenIndicator : MonoBehaviour
 
     void Awake()
     {
-        mainCamera = Camera.main;
+        mainCamera = theARCamera.GetComponent<Camera>(); // Camera.main;
         screenCentre = new Vector3(Screen.width, Screen.height, 0) / 2;
         screenBounds = screenCentre * screenBoundOffset;
         TargetStateChanged += HandleTargetStateChanged;
@@ -40,26 +43,31 @@ public class OffScreenIndicator : MonoBehaviour
     /// </summary>
     void DrawIndicators()
     {
-        foreach(Target target in targets)
+        foreach (Target target in targets)
         {
             Vector3 screenPosition = OffScreenIndicatorCore.GetScreenPosition(mainCamera, target.transform.position);
             bool isTargetVisible = OffScreenIndicatorCore.IsTargetVisible(screenPosition);
             float distanceFromCamera = target.NeedDistanceText ? target.GetDistanceFromCamera(mainCamera.transform.position) : float.MinValue;// Gets the target distance from the camera.
             Indicator indicator = null;
 
-            if(target.NeedBoxIndicator && isTargetVisible)
+            if (target.NeedBoxIndicator && isTargetVisible)
             {
                 screenPosition.z = 0;
                 indicator = GetIndicator(ref target.indicator, IndicatorType.BOX); // Gets the box indicator from the pool.
             }
-            else if(target.NeedArrowIndicator && !isTargetVisible)
+            else if (target.NeedArrowIndicator && !isTargetVisible)
             {
                 float angle = float.MinValue;
                 OffScreenIndicatorCore.GetArrowIndicatorPositionAndAngle(ref screenPosition, ref angle, screenCentre, screenBounds);
                 indicator = GetIndicator(ref target.indicator, IndicatorType.ARROW); // Gets the arrow indicator from the pool.
                 indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg); // Sets the rotation for the arrow indicator.
             }
-            if(indicator)
+            else
+            {
+                target.indicator?.Activate(false);
+                target.indicator = null;
+            }
+            if (indicator)
             {
                 indicator.SetImageColor(target.TargetColor);// Sets the image color of the indicator.
                 indicator.SetDistanceText(distanceFromCamera); //Set the distance text for the indicator.
@@ -78,7 +86,7 @@ public class OffScreenIndicator : MonoBehaviour
     /// <param name="active"></param>
     private void HandleTargetStateChanged(Target target, bool active)
     {
-        if(active)
+        if (active)
         {
             targets.Add(target);
         }
@@ -104,9 +112,9 @@ public class OffScreenIndicator : MonoBehaviour
     /// <returns></returns>
     private Indicator GetIndicator(ref Indicator indicator, IndicatorType type)
     {
-        if(indicator != null)
+        if (indicator != null)
         {
-            if(indicator.Type != type)
+            if (indicator.Type != type)
             {
                 indicator.Activate(false);
                 indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
