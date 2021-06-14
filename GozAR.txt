@@ -37,3 +37,20 @@ Unity Assets:
 
 ...
 
+---
+
+Get started:
+
+ File --> Build Settings: Android --> Switch Platform
+                                  --> Add Open Scenes
+
+ File --> Build Settings --> Player Settings ... --> Player --> Other Settings --> Color Space = Linear
+                                                                               --> Graphics API: Remove 'Vulkan'
+                                                                               --> Minimum API Level = Android 7.0 (API 24)
+
+ File --> Build Settings --> Player Settings ... --> Player --> Resolution and Orientation --> Default Orientation = Landscape Left
+
+ File --> Build Settings --> Player Settings ... --> XR Plug-in Management --> (x) AR Core 
+                                                                               (x) Initialize XR on Startup
+
+
