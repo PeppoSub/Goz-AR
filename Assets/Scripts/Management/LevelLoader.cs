@@ -38,10 +38,8 @@ public class LevelLoader : MonoBehaviour
 
     static public void LoadLevel(int levelIndex)
     {
+        // standard method ...
         SceneManager.LoadScene(levelIndex, LoadSceneMode.Single);
-
-        // StartCoroutine(DelayedLoad(levelIndex));
-        // // error CS0120: An object reference is required for the non-static field, method, or property 'LevelLoader.DelayedLoad(int)'
     }
 
     //IEnumerator DelayedLoad(int levelIndex)
@@ -49,6 +47,8 @@ public class LevelLoader : MonoBehaviour
     //    theTransition.SetTrigger("Start");
     //    yield return new WaitForSeconds(transitionTime);
     //    SceneManager.LoadScene(levelIndex);
+    //
+    // // error CS0120: An object reference is required for the non-static field, method, or property 'LevelLoader.DelayedLoad(int)'
     //}
 
 }

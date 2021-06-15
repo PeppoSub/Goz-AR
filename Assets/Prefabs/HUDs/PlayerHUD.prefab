@@ -1138,14 +1138,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5595128f177e8984ea53bed25b352a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initlife: 5
-  goal: 30
-  timelimit: -1
-  initbombs: 10
+  weapons: 000000000100000002000000
+  initlife: 
+  goal: 
+  timelimit: 
+  initbombs: 
   bloodyDamage: {fileID: 5077620324732608078}
   brokenGlass: {fileID: 3185704666012828095}
   youWin: {fileID: 7207773934393107880}
   shootButton: {fileID: 7207773933873964178}
+  bombButton: {fileID: 0}
   restartButton: {fileID: 6294295610268273861}
   backButton: {fileID: 7207773933984787492}
   scoreText: {fileID: 4189475744984346914}

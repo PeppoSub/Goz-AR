@@ -16,16 +16,18 @@ public class GameStatus : MonoBehaviour
     public static int selectedWeapon;     // weapon in use
     public static float groundLevel;      // ground level (y)
 
-    // make this into arrays, so I can dynamically select things based on level ...
-    public int initlife = 5;              // lives at start
-    public int goal = 30;                 // score goal
-    public int timelimit = 60;            // timelimit (survival mode)
-    public int initbombs = 10;            // bombs at start
+    // make this into arrays, so I can dynamically select things based on level ... (portal: mission = 0)
+    public int[] weapons = { 0, 1, 2 , 4};        // weapon in use [for each mission] - object array is in WeaonScript.cs attached to PlayerHUD
+    public int[] initlife = { 5, 5, 5, -1 };      // lives at start [of each mission]
+    public int[] goal = { 30, -1, -1, -1 };       // score goal [of each mission]
+    public int[] timelimit = { -1, 60, -1, -1 };  // timelimit (survival mode) [of each mission]
+    public int[] initbombs = { 3, 3, 3, 3 };      // bombs at start [of each mission]
 
     public GameObject bloodyDamage;       // screen border when the player gets hit
     public GameObject brokenGlass;        // screen effect when game over
     public GameObject youWin;             // screen text when finish level
     public GameObject shootButton;        // buttons ...
+    public GameObject bombButton;
     public GameObject restartButton;
     public GameObject backButton;
     public TextMeshProUGUI scoreText;     // hud text ...
@@ -33,30 +35,31 @@ public class GameStatus : MonoBehaviour
     public TextMeshProUGUI timeText;
 
     private Button button;
+    private Button bombutton;
     private float secondsCount;
 
     void Start()
     {
-        button = shootButton.GetComponent<Button>();
-        button.interactable = true;
+        mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
 
+        selectedWeapon = weapons[mission];  
         score = 0;
-        life = initlife;
+        life = initlife[mission];
         gotHit = false;
         bossKill = false;
         Time.timeScale = 1f;
         secondsCount = 0f;
-        nBombs = initbombs;
-        mission = SceneManager.GetActiveScene().buildIndex;         // PlayerPrefs.GetInt("currentMission"); 
-        selectedWeapon = SceneManager.GetActiveScene().buildIndex;  // PlayerPrefs.GetInt("currentWeapon"); 
+        nBombs = initbombs[mission];
 
         groundLevel = 0f;
         GameObject[] spawner = GameObject.FindGameObjectsWithTag("Spawner");
         if(spawner.Length > 0) { groundLevel = spawner[0].transform.position.y; }
 
-        var color = bloodyDamage.GetComponent<Image>().color;
-        color.a = 0f;
-        bloodyDamage.GetComponent<Image>().color = color;
+        button = shootButton.GetComponent<Button>();
+        button.interactable = true;
+
+        bombutton = bombButton.GetComponent<Button>();
+        if (nBombs > 0) { bombutton.interactable = true; }
     }
 
     void Update()
@@ -65,29 +68,39 @@ public class GameStatus : MonoBehaviour
         string textbuffer;
 
         textbuffer = "Score: " + score.ToString() + "/";
-        if (goal > 0) { textbuffer += goal.ToString(); } else { textbuffer += "-"; }
+        if (goal[mission] > 0) { textbuffer += goal[mission].ToString(); } else { textbuffer += "-"; }
         scoreText.text = textbuffer;
 
         textbuffer = "Life: " + life.ToString() + "/";
-        if (initlife > 0) { textbuffer += initlife.ToString(); } else { textbuffer += "-"; }
+        if (initlife[mission] > 0) { textbuffer += initlife[mission].ToString(); } else { textbuffer += "-"; }
         lifeText.text = textbuffer;
 
         textbuffer = "Time: " + ((int)secondsCount).ToString() + "/";
-        if (timelimit > 0) { textbuffer += timelimit.ToString(); } else { textbuffer += "-"; }
+        if (timelimit[mission] > 0) { textbuffer += timelimit[mission].ToString(); } else { textbuffer += "-"; }
         timeText.text = textbuffer;
 
-        if ((timelimit > 0) && (secondsCount >= timelimit))
+        if (nBombs > 0) 
+        {
+            bombButton.SetActive(true);
+            bombutton.interactable = true; 
+        }
+        else 
+        {
+            bombButton.SetActive(false);
+        }
+
+        if ((timelimit[mission] > 0) && (secondsCount >= timelimit[mission]))
         {
             // Time.timeScale *= Mathf.Exp((secondsCount - timelimit)/timelimit);  // :)
             YouWin();
         }
 
-        if ((goal > 0) && (score >= goal))
+        if ((goal[mission] > 0) && (score >= goal[mission]))
         {
             YouWin();
         }
 
-        if ((initlife > 0) && (life <= 0))
+        if ((initlife[mission] > 0) && (life <= 0))
         {
             YouLose();
         }
@@ -107,7 +120,7 @@ public class GameStatus : MonoBehaviour
     public void YouWin()
     {
         // set current mission as completed
-        string strlev = "level" + mission.ToString();
+        string strlev = "level" + (mission+1).ToString();
         PlayerPrefs.SetInt(strlev, 1);
         PlayerPrefs.Save();
 
@@ -126,6 +139,7 @@ public class GameStatus : MonoBehaviour
         gotHit = false;
         bloodyDamage.SetActive(false);
         button.interactable = false;
+        bombButton.SetActive(false);
 
         backButton.SetActive(true);
         restartButton.SetActive(true);

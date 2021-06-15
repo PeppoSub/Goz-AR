@@ -116,8 +116,9 @@ public class VolumetricComponent2D : ExploderComponent{
 			teleportBadParticles();
 		}
 	}
-	
-	private void resetColors() {
+
+    [System.Obsolete]
+    private void resetColors() {
 		float alpha = alphaOverLifetime.Evaluate((Time.time - exploder.explosionTime) / duration);
 		Color curColor = colorOverLifetime.Evaluate((Time.time - exploder.explosionTime) / duration);
 		curColor.a = alpha;

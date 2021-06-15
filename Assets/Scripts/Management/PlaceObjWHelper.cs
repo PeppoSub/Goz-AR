@@ -15,19 +15,19 @@ public class PlaceObjWHelper : MonoBehaviour
 
     static List<ARRaycastHit> theHits;
 
-    public GameObject theCamera;
-    public GameObject thePlacementIndicatorPrefab;
-    public GameObject theObjectToPlace;
-    public GameObject theCanvas;
-    public GameObject helpStep0;
-    public GameObject helpStep1;
+    public GameObject theCamera;                           // the AR camera
+    public GameObject thePlacementIndicatorPrefab;         // placement indicator
+    public GameObject theCanvas;                           // player HUD
+    public GameObject[] theObjectsToPlace;                 // spawners to place [for each mission] 
+    public GameObject helpStep0;                           // help message 
+    public GameObject helpStep1;                           // ... make a single help txt field and remove these 2 
     public GameObject helpStep2;
 
-    private int spawnerSelected;
+    private int spawnerSelected;                           // this should be the mission number. see GameStatus
     private Vector2 screenPosition;
     private GameObject thePlacementIndicator;
     private Pose thePlacementPose;
-    private bool placementPoseIsValid = false;
+    private bool placementPoseIsValid;
     private GameObject thePlacedObject;
     private bool placedTheObject;
     private Canvas thePlayerHud;
@@ -43,7 +43,9 @@ public class PlaceObjWHelper : MonoBehaviour
         thePlacementIndicator = GameObject.Instantiate(thePlacementIndicatorPrefab, this.transform.position, this.transform.rotation);
         thePlacementIndicator.SetActive(false);
 
-        spawnerSelected = SceneManager.GetActiveScene().buildIndex;
+        // also changed according to "GameStatus.cs"
+        // spawnerSelected = SceneManager.GetActiveScene().buildIndex - 1;   // !!!
+        spawnerSelected = PlayerPrefs.GetInt("currentMission");
     }
 
     void Update()
@@ -88,7 +90,7 @@ public class PlaceObjWHelper : MonoBehaviour
         if (!placedTheObject && placementPoseIsValid)
         {
             // theObjectsToPlace[spawnerSelected]
-            thePlacedObject = GameObject.Instantiate(theObjectToPlace, thePlacementIndicator.transform.position, thePlacementIndicator.transform.rotation);
+            thePlacedObject = GameObject.Instantiate(theObjectsToPlace[spawnerSelected], thePlacementIndicator.transform.position, thePlacementIndicator.transform.rotation);
             placedTheObject = true;
             InitGame();
         }

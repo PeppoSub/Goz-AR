@@ -10,9 +10,7 @@ public class FlashScript : MonoBehaviour
  
     void Start()
     {
-        var color = this.GetComponent<Image>().color;
-        color.a = initTransparency;
-        this.GetComponent<Image>().color = color;
+        ResetTransparency();
     }
 
     void Update()
@@ -26,8 +24,15 @@ public class FlashScript : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            ResetTransparency();
         }
         // Debug.Log("color.a = " + color.a.ToString()); 
     }
 
+    void ResetTransparency()
+    {
+        var color = this.GetComponent<Image>().color;
+        color.a = initTransparency;
+        this.GetComponent<Image>().color = color;
+    }
 }

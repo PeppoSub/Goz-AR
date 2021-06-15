@@ -66,53 +66,9 @@ public class StartMenu : MonoBehaviour
         }
     }
 
-    // for some reason this has stopped working ... fuck Unity!
-    IEnumerator DelayedLoad(string theParentName)
-    {
-        int levelToLoad = 0;
-
-        yield return new WaitForSeconds(theWaitingTime / 2f);
-
-        if (theParentName == "Level1")
-        {
-            theTargetText.text = "Loading (Lev1) ...";
-            levelToLoad = 1;
-        }
-        else if (theParentName == "Level2")
-        {
-            theTargetText.text = "Loading (Lev2) ...";
-            levelToLoad = 2;
-        }
-        else if (theParentName == "Level3")
-        {
-            theTargetText.text = "Loading (Level3) ...";
-            levelToLoad = 3;
-        }
-        else if (theParentName == "Menu")
-        {
-            theTargetText.text = "Loading (ShowCase) ...";
-            levelToLoad = 4;
-        }
-        else if (theParentName == "Portal")
-        {
-            theTargetText.text = "Loading (AR Portal) ...";
-            levelToLoad = 5;
-        }
-        else
-        {
-            theTargetText.text = "...";
-        }
-        Debug.Log("levelToLoad (delayed) = " + levelToLoad);
-
-        yield return new WaitForSeconds(theWaitingTime / 2f);
-
-        LevelLoader.LoadLevel(levelToLoad);
-    }
-
     public void JustLoad(string theParentName)
     {
         int levelToLoad = 0;
-
         if (theParentName == "Level1")
         {
             theTargetText.text = "Loading (Lev1) ...";
@@ -128,14 +84,14 @@ public class StartMenu : MonoBehaviour
             theTargetText.text = "Loading (Level3) ...";
             levelToLoad = 3;
         }
-        else if (theParentName == "Menu")
-        {
-            theTargetText.text = "Loading (ShowCase) ...";
-            levelToLoad = 4;
-        }
         else if (theParentName == "Portal")
         {
             theTargetText.text = "Loading (AR Portal) ...";
+            levelToLoad = 4;
+        }
+        else if (theParentName == "Menu")
+        {
+            theTargetText.text = "Loading (Credits) ...";
             levelToLoad = 5;
         }
         else
@@ -144,12 +100,26 @@ public class StartMenu : MonoBehaviour
         }
 
         //Debug.Log("levelToLoad = " + levelToLoad);
+        SetCurrentMission(levelToLoad);
         LevelLoader.LoadLevel(levelToLoad);
+
+        // // this is pretty lame ... make it better!
+        // if (levelToLoad < 4) { LoadMission(levelToLoad); }
+        // else { LevelLoader.LoadLevel(2); }
     }
 
     public void TestLev1()
     {
         theTargetText.text = "Button is pushed ...";
-        DelayedLoad("Level1");
+        //DelayedLoad("Level1");
     }
+
+    public void SetCurrentMission(int levelIndex)
+    {
+        string strlev = "currentMission";
+        PlayerPrefs.SetInt(strlev, levelIndex);
+        PlayerPrefs.Save();
+        //LevelLoader.LoadLevel(1);
+    }
+
 }
