@@ -10,6 +10,8 @@ public class LevelLoader : MonoBehaviour
     // public Animator theTransition;
     // public float transitionTime = 1f;
 
+    public static int missionScene = 1;     // this is the build index of the Mission Scene (0: start menu, 1: mission scene, 2: credits)
+
     void Start()
     {
         // Restore normal time
@@ -24,11 +26,11 @@ public class LevelLoader : MonoBehaviour
         LoadLevel(0);
     }
 
-    static public void LoadNextLevel()
-    {
-        int current = SceneManager.GetActiveScene().buildIndex;
-        LoadLevel(current + 1);
-    }
+//    static public void LoadNextLevel()
+//    {
+//        int current = SceneManager.GetActiveScene().buildIndex;
+//        LoadLevel(current + 1);
+//    }
 
     static public void ReloadThisLevel()
     {
@@ -38,8 +40,16 @@ public class LevelLoader : MonoBehaviour
 
     static public void LoadLevel(int levelIndex)
     {
-        // standard method ...
+        // standard method: loads the scene with build index = levelIndex 
         SceneManager.LoadScene(levelIndex, LoadSceneMode.Single);
+    }
+
+    static public void LoadMission(int missionIdx)
+    {
+        // assume the current mission is already stored in 'PlayerPrefs' as "currentMission"
+        // int missionIdx = PlayerPrefs.GetInt("currentMission");
+        Debug.Log("LevelLoader.LoadMission(" + missionIdx + ") ... loading Scene n." + missionScene.ToString() + " with missionIdx = " + missionIdx.ToString());
+        LevelLoader.LoadLevel(missionScene);
     }
 
     //IEnumerator DelayedLoad(int levelIndex)

@@ -45,7 +45,7 @@ public class PlaceObjWHelper : MonoBehaviour
 
         // also changed according to "GameStatus.cs"
         // spawnerSelected = SceneManager.GetActiveScene().buildIndex - 1;   // !!!
-        spawnerSelected = PlayerPrefs.GetInt("currentMission");
+        spawnerSelected = PlayerPrefs.GetInt("currentMission") - 1;
     }
 
     void Update()

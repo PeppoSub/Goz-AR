@@ -40,7 +40,8 @@ public class GameStatus : MonoBehaviour
 
     void Start()
     {
-        mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
+        //mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
+        mission = PlayerPrefs.GetInt("currentMission") - 1; 
 
         selectedWeapon = weapons[mission];  
         score = 0;
@@ -120,9 +121,11 @@ public class GameStatus : MonoBehaviour
     public void YouWin()
     {
         // set current mission as completed
-        string strlev = "level" + (mission+1).ToString();
+        int missionNr = mission + 1;
+        string strlev = "level" + (missionNr).ToString();
         PlayerPrefs.SetInt(strlev, 1);
         PlayerPrefs.Save();
+        Debug.Log("Saving Mission " + missionNr + ":  " + strlev + " = 1");
 
         youWin.SetActive(true);
         EndGame();

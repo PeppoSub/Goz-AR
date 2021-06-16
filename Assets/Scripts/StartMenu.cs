@@ -10,16 +10,22 @@ public class StartMenu : MonoBehaviour
     public GameObject ball3;
 
     public float theWaitingTime = 3f;
+    public bool doClean = false;
 
     void Start()
     {
         // enable this to reset level completion on each play (and for testing)
-        //PlayerPrefs.SetInt("level1", 0);
-        //PlayerPrefs.SetInt("level2", 0);
-        //PlayerPrefs.SetInt("level3", 0);
-        //PlayerPrefs.Save();
+        if(doClean)
+        {
+            PlayerPrefs.SetInt("level0", 0);
+            PlayerPrefs.SetInt("level1", 0);
+            PlayerPrefs.SetInt("level2", 0);
+            PlayerPrefs.SetInt("level3", 0);
+            PlayerPrefs.Save();
+        }
 
         // this will better become an array 
+        int level0 = PlayerPrefs.GetInt("level0");
         int level1 = PlayerPrefs.GetInt("level1");
         int level2 = PlayerPrefs.GetInt("level2");
         int level3 = PlayerPrefs.GetInt("level3");
@@ -28,6 +34,7 @@ public class StartMenu : MonoBehaviour
         //string player = PlayerPrefs.GetString("username");
         //float volume = PlayerPrefs.GetFloat("volume");
 
+        // no ball0 (this is the portal demo)
         ball1.SetActive(false);
         ball2.SetActive(false);
         ball3.SetActive(false);
@@ -68,31 +75,31 @@ public class StartMenu : MonoBehaviour
 
     public void JustLoad(string theParentName)
     {
-        int levelToLoad = 0;
+        //int levelToLoad = 0;
         if (theParentName == "Level1")
         {
             theTargetText.text = "Loading (Lev1) ...";
-            levelToLoad = 1;
+            SetCurrentMission(1);
         }
         else if (theParentName == "Level2")
         {
             theTargetText.text = "Loading (Lev2) ...";
-            levelToLoad = 2;
+            SetCurrentMission(2);
         }
         else if (theParentName == "Level3")
         {
             theTargetText.text = "Loading (Level3) ...";
-            levelToLoad = 3;
+            SetCurrentMission(3);
         }
         else if (theParentName == "Portal")
         {
             theTargetText.text = "Loading (AR Portal) ...";
-            levelToLoad = 4;
+            SetCurrentMission(4);
         }
         else if (theParentName == "Menu")
         {
             theTargetText.text = "Loading (Credits) ...";
-            levelToLoad = 5;
+            LevelLoader.LoadLevel(2);     // scene index of the credit scene or menu
         }
         else
         {
@@ -100,12 +107,7 @@ public class StartMenu : MonoBehaviour
         }
 
         //Debug.Log("levelToLoad = " + levelToLoad);
-        SetCurrentMission(levelToLoad);
-        LevelLoader.LoadLevel(levelToLoad);
-
-        // // this is pretty lame ... make it better!
-        // if (levelToLoad < 4) { LoadMission(levelToLoad); }
-        // else { LevelLoader.LoadLevel(2); }
+        // LevelLoader.LoadLevel(levelToLoad);
     }
 
     public void TestLev1()
@@ -119,7 +121,7 @@ public class StartMenu : MonoBehaviour
         string strlev = "currentMission";
         PlayerPrefs.SetInt(strlev, levelIndex);
         PlayerPrefs.Save();
-        //LevelLoader.LoadLevel(1);
+        LevelLoader.LoadMission(levelIndex);    // no need the parameters
     }
 
 }
