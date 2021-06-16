@@ -80,7 +80,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f30f9dd1035dd0418a6cffeb7733915, type: 2}
+  - {fileID: 2100000, guid: e129195b37eec6544bdee95e980ca2b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   criticalHealth: 3
-  enemyScore: 1
+  enemyScore: 2
   theChildren: {fileID: 3236969977178045566, guid: 35ab4962630451346840d032030fffc0, type: 3}
   nChildren: 2
   deathSmoke: {fileID: 1975141522878942813, guid: 1b9f4316433b24e92be0a740990a1e4d, type: 3}

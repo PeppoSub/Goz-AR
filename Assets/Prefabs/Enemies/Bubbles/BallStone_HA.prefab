@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6212495390975860312}
   - component: {fileID: 6212495390976663160}
   - component: {fileID: 6212495390977760440}
-  - component: {fileID: 6212495390975558267}
+  - component: {fileID: 5141868783165408303}
   m_Layer: 0
   m_Name: Spiral
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6212495390975558267
+--- !u!114 &5141868783165408303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,10 +91,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6212495390975558264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bc8ee8d1d5013843b99ba9f330ef914, type: 3}
+  m_Script: {fileID: 11500000, guid: f90cb93c0f8ab84459ebadf113b8ae68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 2
+  rotationSpeed: 0.5
 --- !u!1 &6212495391959896299
 GameObject:
   m_ObjectHideFlags: 0

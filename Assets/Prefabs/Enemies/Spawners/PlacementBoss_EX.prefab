@@ -138,11 +138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d290216acf457d34888dceec00e27b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 1000
   criticalHealth: 10
   enemyScore: 100
   theChildren: {fileID: 0}
-  nChildren: 2
+  nChildren: 0
   deathSmoke: {fileID: 5983421984252740010, guid: 61421428ac727ee4085d457dc4801f2f, type: 3}
   hitSmoke: {fileID: 0}
 --- !u!114 &6351873062531586972

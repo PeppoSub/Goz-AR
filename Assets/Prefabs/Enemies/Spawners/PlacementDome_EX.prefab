@@ -49,8 +49,10 @@ MonoBehaviour:
   - {fileID: 5795910373153398237, guid: 2e953de748d87104fa419701c91431fe, type: 3}
   - {fileID: 5039227899485565, guid: 465a65677309e19439b5edb723bf692c, type: 3}
   - {fileID: 8961484431856059792, guid: b8516490ac1e56a408fea460e6631798, type: 3}
+  initSleep: 3
   WaitTimeSeconds: 2
   shift: 0.1
+  speedUp: 0.75
 --- !u!1 &5083215945050776789
 GameObject:
   m_ObjectHideFlags: 0

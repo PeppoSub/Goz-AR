@@ -27,7 +27,10 @@ public class BubbleSpawn : MonoBehaviour
     {
         if(started) 
         {
-            if (speedUp > 0f) { spawnInterval = spawnInterval - (speedUp * seconds) /60f; }
+            if ((speedUp > 0f) && (spawnInterval>0.1f))    // cannot spawn more than 10 bubbles/sec.
+            { 
+                spawnInterval = spawnInterval - (speedUp * Time.deltaTime) /60f; 
+            }
             return; 
         }
 

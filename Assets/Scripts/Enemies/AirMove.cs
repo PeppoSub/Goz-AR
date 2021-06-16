@@ -20,6 +20,7 @@ public class AirMove : MonoBehaviour
     private float flySpeed;
     private float seconds;
     private float phase;
+    private bool airBorn;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class AirMove : MonoBehaviour
         flySpeed = 0;
         seconds = 0;
         phase = Random.Range(0, 2 * Mathf.PI);
+        airBorn = false;
     }
 
     void Update()
@@ -50,9 +52,13 @@ public class AirMove : MonoBehaviour
 
         // reach maxHi wrt ground level, then fly toward the player
         float relativeHi = this.transform.position.y - GameStatus.groundLevel;
-        if (relativeHi < maxHi)
+        if ((relativeHi < maxHi) && !airBorn)
         {
             this.transform.Translate(Vector3.up * Time.deltaTime * flySpeed);
+        }
+        else
+        {
+            airBorn = true;
         }
 
         // main direction of motion toward the player
