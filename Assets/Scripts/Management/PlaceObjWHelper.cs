@@ -15,7 +15,7 @@ public class PlaceObjWHelper : MonoBehaviour
 
     static List<ARRaycastHit> theHits;
 
-    public GameObject theCamera;                           // the AR camera
+    //public GameObject theCamera;                           // the AR camera
     public GameObject thePlacementIndicatorPrefab;         // placement indicator
     public GameObject theCanvas;                           // player HUD
     public GameObject[] theObjectsToPlace;                 // spawners to place [for each mission] 
