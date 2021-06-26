@@ -17,7 +17,7 @@ public class GameStatus : MonoBehaviour
     public static float groundLevel;      // ground level (y)
 
     // make this into arrays, so I can dynamically select things based on level ... (portal: mission = 4)
-    public int[] weapons = { 0, 1, 2 , 3};        // weapon in use [for each mission] - object array is in WeaponScript.cs attached to PlayerHUD
+    //public int[] weapons = { 0, 1, 2 , 3};        // weapon in use [for each mission] - object array is in WeaponScript.cs attached to PlayerHUD
     public int[] initlife = { 5, 5, 5, 1 };       // lives at start [of each mission]
     public int[] goal = { 30, -1, -1, -1 };       // score goal [of each mission]
     public int[] timelimit = { -1, 60, -1, -1 };  // timelimit (survival mode) [of each mission]
@@ -41,9 +41,9 @@ public class GameStatus : MonoBehaviour
     void Start()
     {
         //mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
-        mission = PlayerPrefs.GetInt("currentMission") - 1; 
+        mission = PlayerPrefs.GetInt("currentMission") - 1;
 
-        selectedWeapon = weapons[mission];  
+        selectedWeapon = mission; // weapons[mission];  
         score = 0;
         life = initlife[mission];
         gotHit = false;
@@ -60,7 +60,7 @@ public class GameStatus : MonoBehaviour
         button.interactable = true;
 
         bombutton = bombButton.GetComponent<Button>();
-        if (nBombs > 0) { bombutton.interactable = true; }
+        // if (nBombs > 0) { bombutton.interactable = true; }
     }
 
     void Update()
@@ -141,7 +141,8 @@ public class GameStatus : MonoBehaviour
     {
         gotHit = false;
         bloodyDamage.SetActive(false);
-        button.interactable = false;
+        //button.interactable = false;
+        shootButton.SetActive(false);
         bombButton.SetActive(false);
 
         backButton.SetActive(true);
