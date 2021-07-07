@@ -30,6 +30,7 @@ public class GameStatus : MonoBehaviour
     public GameObject bombButton;
     public GameObject restartButton;
     public GameObject backButton;
+    public GameObject[] healthBar;        // 1 heart = 1 life
     public TextMeshProUGUI scoreText;     // hud text ...
     public TextMeshProUGUI lifeText;
     public TextMeshProUGUI timeText;
@@ -68,15 +69,23 @@ public class GameStatus : MonoBehaviour
         secondsCount += Time.deltaTime;
         string textbuffer;
 
-        textbuffer = "Score: " + score.ToString() + "/";
+        textbuffer = "     " + score.ToString() + "/";
         if (goal[mission] > 0) { textbuffer += goal[mission].ToString(); } else { textbuffer += "-"; }
         scoreText.text = textbuffer;
 
         textbuffer = "Life: " + life.ToString() + "/";
         if (initlife[mission] > 0) { textbuffer += initlife[mission].ToString(); } else { textbuffer += "-"; }
         lifeText.text = textbuffer;
+        if(healthBar != null)
+        {
+            for(int i = 0;i<healthBar.Length; i++)
+            {
+                if (i < life) { healthBar[i].SetActive(true); }
+                else { healthBar[i].SetActive(false); }
+            }
+        }
 
-        textbuffer = "Time: " + ((int)secondsCount).ToString() + "/";
+        textbuffer = "     " + ((int)secondsCount).ToString() + "/";
         if (timelimit[mission] > 0) { textbuffer += timelimit[mission].ToString(); } else { textbuffer += "-"; }
         timeText.text = textbuffer;
 

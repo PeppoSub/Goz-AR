@@ -6,6 +6,7 @@ public class AirMove : MonoBehaviour
 {
     public float maxSpeed = 1f;
     public float maxHi = 1f;
+    public float spreadDistance = 1f;  // how far to spread from the spawning point (flat distance)
     public float hitDistance = 1f;     // at what distance they hit the player
     public float maxDistance = 30f;    // at what distance they are out of the game
     public float sideMove = 0.2f;
@@ -21,6 +22,7 @@ public class AirMove : MonoBehaviour
     private float seconds;
     private float phase;
     private bool airBorn;
+    private int leftRight;
 
     void Start()
     {
@@ -31,12 +33,15 @@ public class AirMove : MonoBehaviour
         seconds = 0;
         phase = Random.Range(0, 2 * Mathf.PI);
         airBorn = false;
+        if (phase < Mathf.PI) { leftRight = 1; }
+        else { leftRight = -1;  }
     }
 
     void Update()
     {
         seconds += Time.deltaTime;
         float distanceFromSpawn = Vector3.Distance(this.transform.position, spawnPoint);
+        float flatDistance = FlatDistance(this.transform.position, spawnPoint);
 
         Vector3 playerPos = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
         Vector3 vectorDistance = playerPos - this.transform.position; ;
@@ -50,11 +55,15 @@ public class AirMove : MonoBehaviour
         if (flySpeed < maxSpeed) { flySpeed += 9.81f * Time.deltaTime; }
         else { flySpeed = maxSpeed; }
 
-        // reach maxHi wrt ground level, then fly toward the player
+        // reach maxHi wrt ground level and spread-out, then fly toward the player
         float relativeHi = this.transform.position.y - GameStatus.groundLevel;
         if ((relativeHi < maxHi) && !airBorn)
         {
             this.transform.Translate(Vector3.up * Time.deltaTime * flySpeed);
+            if(flatDistance < spreadDistance)
+            { 
+               this.transform.Translate(leftRight * (phase/Mathf.PI) * OrthOriz(vectorDistance) * Time.deltaTime * (flySpeed/4f));
+            }
         }
         else
         {
@@ -108,4 +117,9 @@ public class AirMove : MonoBehaviour
         return outvec;
     }
 
+    private float FlatDistance(Vector3 vecA, Vector3 vecB)
+    {
+        float dist2 = ((vecA.x - vecB.x) * (vecA.x - vecB.x)) + ((vecA.z - vecB.z) * (vecA.z - vecB.z));
+        return Mathf.Sqrt(dist2);
+    }
 }
