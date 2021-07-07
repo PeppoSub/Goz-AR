@@ -141,6 +141,8 @@ MonoBehaviour:
   maxHealth: 1000
   criticalHealth: 10
   enemyScore: 100
+  bombDrop: 0
+  lifeDrop: 1
   theChildren: {fileID: 0}
   nChildren: 0
   deathSmoke: {fileID: 5983421984252740010, guid: 61421428ac727ee4085d457dc4801f2f, type: 3}

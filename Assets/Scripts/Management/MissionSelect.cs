@@ -8,9 +8,10 @@ public class MissionSelect : MonoBehaviour
     public Camera theCamera;
     public TextMeshProUGUI theTargetText;
 
-    public GameObject star1;
-    public GameObject star2;
-    public GameObject star3;
+    public GameObject lev1;
+    public GameObject lev2;
+    public GameObject lev3;
+    public GameObject lev4;
 
     private Vector2 touchPosition;
     private string loadMission;
@@ -27,13 +28,13 @@ public class MissionSelect : MonoBehaviour
         int level2 = PlayerPrefs.GetInt("level2");
         int level3 = PlayerPrefs.GetInt("level3");
 
-        star1.SetActive(false);
-        star2.SetActive(false);
-        star3.SetActive(false);
+        lev1.SetActive(true);
+        lev2.SetActive(true);
+        lev3.SetActive(false);
+        lev4.SetActive(false);
 
-        if (level1 == 1) { star1.SetActive(true); }
-        if (level2 == 1) { star2.SetActive(true); }
-        if (level3 == 1) { star3.SetActive(true); }
+        if ((level1 == 1) && (level2 == 1)) { lev3.SetActive(true); }
+        if (level3 == 1) { lev4.SetActive(true); }
 
         Time.timeScale = 1f;
     }
@@ -42,11 +43,6 @@ public class MissionSelect : MonoBehaviour
     {
         if (!TryGetTouchPosition()) { return; }
 
-        //if (Input.touchCount <= 0) return;
-        //Touch touch = Input.GetTouch(index: 0);
-        //if (touch.phase != TouchPhase.Ended) return;
-
-        //Ray theRay = theCamera.ScreenPointToRay(touch.position);
         Ray theRay = theCamera.ScreenPointToRay(touchPosition);
         RaycastHit theHit;
 
@@ -54,18 +50,9 @@ public class MissionSelect : MonoBehaviour
         if (didHit)
         {
             loadMission = theHit.collider.gameObject.name;
-
             Debug.Log("levelToLoad = " + loadMission);
             
             JustLoad(loadMission);
-            //if (loadMission.StartsWith("Lev")) 
-            //{
-            //    string numbersOnly = Regex.Replace(loadMission, "[^0-9]", "");
-            //    missionNr = int.Parse(numbersOnly);
-            //    Debug.Log("levelToLoad = " + missionNr.ToString());
-            //    theTargetText.text = "Loading (Lev" + missionNr.ToString() + ") ...";
-            //    SetCurrentMission(missionNr);
-            //}
         }
 
     }

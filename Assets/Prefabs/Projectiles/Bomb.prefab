@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
-  radius: 2
+  radius: 2.5
   force: 10
   explodeOnGround: 1
   explosionEffect: {fileID: 100006, guid: ea7d81b22d1e6df49bdc3925a03a5c06, type: 3}

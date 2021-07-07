@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   rotation: {x: -2, y: 0, z: 0}
-  damage: 10
+  damage: 15
   coolDown: 0.2
   stayOnGround: 0
   destroyOnImpact: 0

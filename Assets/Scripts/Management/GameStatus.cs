@@ -18,10 +18,10 @@ public class GameStatus : MonoBehaviour
 
     // make this into arrays, so I can dynamically select things based on level ... (portal: mission = 4)
     //public int[] weapons = { 0, 1, 2 , 3};        // weapon in use [for each mission] - object array is in WeaponScript.cs attached to PlayerHUD
-    public int[] initlife = { 5, 5, 5, 1 };       // lives at start [of each mission]
+    public int[] initlife = { 5, 5, 5, -1 };       // lives at start [of each mission]
     public int[] goal = { 30, -1, -1, -1 };       // score goal [of each mission]
     public int[] timelimit = { -1, 60, -1, -1 };  // timelimit (survival mode) [of each mission]
-    public int[] initbombs = { 3, 3, 3, 0 };      // bombs at start [of each mission]
+    public int[] initbombs = { 0, 3, 3, 0 };      // bombs at start [of each mission]
 
     public GameObject bloodyDamage;       // screen border when the player gets hit
     public GameObject brokenGlass;        // screen effect when game over
@@ -31,8 +31,10 @@ public class GameStatus : MonoBehaviour
     public GameObject restartButton;
     public GameObject backButton;
     public GameObject[] healthBar;        // 1 heart = 1 life
+    public GameObject scoreAnim;          // animation for scoring (star flies to score counter)
+    public GameObject bombAnim;           // ...
+    public GameObject lifeAnim;           // ...
     public TextMeshProUGUI scoreText;     // hud text ...
-    public TextMeshProUGUI lifeText;
     public TextMeshProUGUI timeText;
 
     private Button button;
@@ -61,7 +63,6 @@ public class GameStatus : MonoBehaviour
         button.interactable = true;
 
         bombutton = bombButton.GetComponent<Button>();
-        // if (nBombs > 0) { bombutton.interactable = true; }
     }
 
     void Update()
@@ -69,14 +70,11 @@ public class GameStatus : MonoBehaviour
         secondsCount += Time.deltaTime;
         string textbuffer;
 
-        textbuffer = "     " + score.ToString() + "/";
+        textbuffer = "" + score.ToString() + "/";
         if (goal[mission] > 0) { textbuffer += goal[mission].ToString(); } else { textbuffer += "-"; }
         scoreText.text = textbuffer;
 
-        textbuffer = "Life: " + life.ToString() + "/";
-        if (initlife[mission] > 0) { textbuffer += initlife[mission].ToString(); } else { textbuffer += "-"; }
-        lifeText.text = textbuffer;
-        if(healthBar != null)
+        if((healthBar != null) && (initlife[mission] > 0))
         {
             for(int i = 0;i<healthBar.Length; i++)
             {
@@ -85,19 +83,12 @@ public class GameStatus : MonoBehaviour
             }
         }
 
-        textbuffer = "     " + ((int)secondsCount).ToString() + "/";
+        textbuffer = "" + ((int)secondsCount).ToString() + "/";
         if (timelimit[mission] > 0) { textbuffer += timelimit[mission].ToString(); } else { textbuffer += "-"; }
         timeText.text = textbuffer;
 
-        if (nBombs > 0) 
-        {
-            bombButton.SetActive(true);
-            bombutton.interactable = true; 
-        }
-        else 
-        {
-            bombButton.SetActive(false);
-        }
+        if (nBombs > 0) { bombButton.SetActive(true); }
+        else { bombButton.SetActive(false); }
 
         if ((timelimit[mission] > 0) && (secondsCount >= timelimit[mission]))
         {
@@ -150,7 +141,6 @@ public class GameStatus : MonoBehaviour
     {
         gotHit = false;
         bloodyDamage.SetActive(false);
-        //button.interactable = false;
         shootButton.SetActive(false);
         bombButton.SetActive(false);
 
@@ -176,7 +166,23 @@ public class GameStatus : MonoBehaviour
         }
 
         // slow down time
-        Time.timeScale = 0.1f;
+        Time.timeScale = 0.09f;
+    }
+
+    public void Score(int sc, int bd, int ld)
+    {
+        score += sc;
+        if (scoreAnim != null) { scoreAnim.SetActive(true); }
+        if (bd>0)
+        {
+            nBombs += bd;
+            if (bombAnim != null) { bombAnim.SetActive(true); }
+        }
+        if (ld > 0)
+        {
+            life += ld;
+            if (lifeAnim != null) { lifeAnim.SetActive(true); }
+        }
     }
 
 }
