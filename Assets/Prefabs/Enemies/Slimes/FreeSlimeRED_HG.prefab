@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: -7467452874866591104}
   - component: {fileID: 3859679004687595676}
   m_Layer: 0
-  m_Name: FreeSlimeRED_HG
+  m_Name: FreeSlimeRed_HG
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
