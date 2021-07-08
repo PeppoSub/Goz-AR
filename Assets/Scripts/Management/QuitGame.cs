@@ -16,6 +16,7 @@ public class QuitGame : MonoBehaviour
 
     public void ResetProgress()
     {
+        PlayerPrefs.SetInt("level0", 0);
         PlayerPrefs.SetInt("level1", 0);
         PlayerPrefs.SetInt("level2", 0);
         PlayerPrefs.SetInt("level3", 0);

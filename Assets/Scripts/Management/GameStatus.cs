@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class GameStatus : MonoBehaviour
 {
+    // mission items into arrays, so I can dynamically select things based on level ... (portal: mission = 4)
+    //private int[] weapons = { 0, 1, 2 , 3};      // weapon in use [for each mission] - object array is in WeaponScript.cs attached to PlayerHUD
+    private int[] initlife = { 3, 3, 3, -1 };      // lives at start [of each mission]
+    private int[] goal = { 30, -1, -1, -1 };       // score goal [of each mission]
+    private int[] timelimit = { -1, 60, -1, -1 };  // timelimit (survival mode) [of each mission]
+    private int[] initbombs = { 0, 0, 3, 0 };      // bombs at start [of each mission]
+
     public static int score;              // current score
     public static int life;               // current lives
     public static bool gotHit;            // becomes true when hit
@@ -15,13 +22,6 @@ public class GameStatus : MonoBehaviour
     public static int nBombs;             // bombs available
     public static int selectedWeapon;     // weapon in use
     public static float groundLevel;      // ground level (y)
-
-    // make this into arrays, so I can dynamically select things based on level ... (portal: mission = 4)
-    //public int[] weapons = { 0, 1, 2 , 3};        // weapon in use [for each mission] - object array is in WeaponScript.cs attached to PlayerHUD
-    public int[] initlife = { 5, 5, 5, -1 };       // lives at start [of each mission]
-    public int[] goal = { 30, -1, -1, -1 };       // score goal [of each mission]
-    public int[] timelimit = { -1, 60, -1, -1 };  // timelimit (survival mode) [of each mission]
-    public int[] initbombs = { 0, 3, 3, 0 };      // bombs at start [of each mission]
 
     public GameObject bloodyDamage;       // screen border when the player gets hit
     public GameObject brokenGlass;        // screen effect when game over
@@ -45,7 +45,9 @@ public class GameStatus : MonoBehaviour
     {
         //mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
         mission = PlayerPrefs.GetInt("currentMission") - 1;
-
+#if UNITY_EDITOR
+        mission = 0;
+#endif
         selectedWeapon = mission; // weapons[mission];  
         score = 0;
         life = initlife[mission];
@@ -63,6 +65,11 @@ public class GameStatus : MonoBehaviour
         button.interactable = true;
 
         bombutton = bombButton.GetComponent<Button>();
+
+        for (int i = 0; i < healthBar.Length; i++)
+        {
+            healthBar[i].SetActive(false);
+        }
     }
 
     void Update()
@@ -74,7 +81,7 @@ public class GameStatus : MonoBehaviour
         if (goal[mission] > 0) { textbuffer += goal[mission].ToString(); } else { textbuffer += "-"; }
         scoreText.text = textbuffer;
 
-        if((healthBar != null) && (initlife[mission] > 0))
+        if(initlife[mission] > 0)
         {
             for(int i = 0;i<healthBar.Length; i++)
             {
@@ -144,7 +151,7 @@ public class GameStatus : MonoBehaviour
         shootButton.SetActive(false);
         bombButton.SetActive(false);
 
-        backButton.SetActive(true);
+        // backButton.SetActive(true);   // always active
         restartButton.SetActive(true);
 
         // disable movement and hit effect on all enemies
@@ -166,7 +173,7 @@ public class GameStatus : MonoBehaviour
         }
 
         // slow down time
-        Time.timeScale = 0.09f;
+        Time.timeScale = 0.05f;
     }
 
     public void Score(int sc, int bd, int ld)

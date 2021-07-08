@@ -36,7 +36,9 @@ public class PlaceObjWHelper : MonoBehaviour
     {
         placedTheObject = false;
         thePlayerHud = theCanvas.GetComponent<Canvas>();
-        //if (thePlayerHud.isActiveAndEnabled) { placedTheObject = true; }
+#if !UNITY_EDITOR
+        theCanvas.SetActive(false);
+#endif
         helpStep0.SetActive(true); 
 
         placementPoseIsValid = false;

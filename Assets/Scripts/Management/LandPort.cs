@@ -14,7 +14,7 @@ public class LandPort : MonoBehaviour
     private Vector3 portraitCameraPos;
     private Quaternion defaultCameraRot;
     private Quaternion portraitCameraRot;
-    private bool portrait;
+    //private bool portrait;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class LandPort : MonoBehaviour
         portraitCameraRot = portraitCamera.transform.rotation;
         //portraitCameraPos = new Vector3(defaultCameraPos.x + 0.1f, defaultCameraPos.y + 2.2f, defaultCameraPos.z - 7.2f);
 
-        portrait = false; 
+        //portrait = false; 
     }
 
     void Update()
@@ -34,7 +34,7 @@ public class LandPort : MonoBehaviour
             this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, portraitCameraPos, cameraSpeed* Time.deltaTime);
             this.gameObject.transform.rotation = Quaternion.Lerp(this.gameObject.transform.rotation, portraitCameraRot, cameraSpeed * Time.deltaTime);
             //theTargetText.text = "Portrait";
-            portrait = true;
+            //portrait = true;
         }
         else 
         {

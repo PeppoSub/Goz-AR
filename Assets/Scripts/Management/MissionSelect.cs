@@ -13,28 +13,22 @@ public class MissionSelect : MonoBehaviour
     public GameObject lev3;
     public GameObject lev4;
 
+    private int level1 = 0;
+    private int level2 = 0;
+    private int level3 = 0;
+
     private Vector2 touchPosition;
     private string loadMission;
 
     void Start()
     {
-        // PlayerPrefs.SetInt("level0", 0);
-        // PlayerPrefs.SetInt("level1", 0);
-        // PlayerPrefs.SetInt("level2", 0);
-        // PlayerPrefs.SetInt("level3", 0);
-        // PlayerPrefs.Save();
+        // ResetPlayerPrefs();
 
-        int level1 = PlayerPrefs.GetInt("level1");
-        int level2 = PlayerPrefs.GetInt("level2");
-        int level3 = PlayerPrefs.GetInt("level3");
+        level1 = PlayerPrefs.GetInt("level1");
+        level2 = PlayerPrefs.GetInt("level2");
+        level3 = PlayerPrefs.GetInt("level3");
 
-        lev1.SetActive(true);
-        lev2.SetActive(true);
-        lev3.SetActive(false);
-        lev4.SetActive(false);
-
-        if ((level1 == 1) && (level2 == 1)) { lev3.SetActive(true); }
-        if (level3 == 1) { lev4.SetActive(true); }
+        PlaceSelectables();
 
         Time.timeScale = 1f;
     }
@@ -102,11 +96,17 @@ public class MissionSelect : MonoBehaviour
         {
             theTargetText.text = "Loading (AR Portal) ...";
             SetCurrentMission(4);
+            // LevelLoader.LoadLevel(3);     // maybe: create a separate scene for portal
         }
         else if (theParentName == "Menu")
         {
             theTargetText.text = "Loading (Credits) ...";
             LevelLoader.LoadLevel(2);     // scene index of the credit scene or menu
+        }
+        else if (theParentName == "Info")
+        {
+            theTargetText.text = "Loading (Info) ...";
+            LevelLoader.LoadLevel(3);     // hidden scene (placeholder)
         }
         else
         {
@@ -123,5 +123,50 @@ public class MissionSelect : MonoBehaviour
         PlayerPrefs.SetInt(strlev, levelIndex);
         PlayerPrefs.Save();
         LevelLoader.LoadMission(levelIndex);    // no need the parameters
+    }
+
+    public void PlaceSelectables()
+    {
+        lev1.SetActive(true);
+        lev2.SetActive(false);
+        lev3.SetActive(false);
+        lev4.SetActive(false);
+
+        //if (level0 == 1) { ... }
+        if (level1 == 1) { lev2.SetActive(true); }
+        if (level2 == 1) { lev3.SetActive(true); }
+        if (level3 == 1) { lev4.SetActive(true); }
+
+        if(level3 == 1)
+        {
+            lev1.transform.position = new Vector3(-1.6f, 0.22f, 2.6f);
+            lev2.transform.position = new Vector3(1.6f, 0.15f, 2.5f);
+            lev3.transform.position = new Vector3(-0.1f, 0.25f, 2f);
+            lev4.transform.position = new Vector3(-2f, 1.1f, 2.5f);
+        }
+        else if (level2 == 1)
+        {
+            lev1.transform.position = new Vector3(-1.6f, 0.22f, 2.6f);
+            lev2.transform.position = new Vector3(1.6f, 0.15f, 2.5f);
+            lev3.transform.position = new Vector3(-0.1f, 0.25f, 2f);
+        }
+        else if (level1 == 1)
+        {
+            lev1.transform.position = new Vector3(-1.5f, 0.2f, 2.6f);
+            lev2.transform.position = new Vector3(1.5f, 0.13f, 2.5f);
+        }
+        else
+        {
+            lev1.transform.position = new Vector3(0f, 0.25f, 2.5f);
+        }
+    }
+
+    private void ResetPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("level0", 0);
+        PlayerPrefs.SetInt("level1", 0);
+        PlayerPrefs.SetInt("level2", 0);
+        PlayerPrefs.SetInt("level3", 0);
+        PlayerPrefs.Save();
     }
 }
