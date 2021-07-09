@@ -45,9 +45,14 @@ public class PlaceObjWHelper : MonoBehaviour
         thePlacementIndicator = GameObject.Instantiate(thePlacementIndicatorPrefab, this.transform.position, this.transform.rotation);
         thePlacementIndicator.SetActive(false);
 
-        // also changed according to "GameStatus.cs"
-        // spawnerSelected = SceneManager.GetActiveScene().buildIndex - 1;   // !!!
-        spawnerSelected = PlayerPrefs.GetInt("currentMission") - 1;
+        // changed according to single scene (see "GameStatus.cs")
+        // for multiple cene use: spawnerSelected = SceneManager.GetActiveScene().buildIndex - 1;   // !!!
+        // ... or just add a single object into the array
+        if(theObjectsToPlace.Length>1)
+        {
+            spawnerSelected = PlayerPrefs.GetInt("currentMission") - 1;
+        }
+        else { spawnerSelected = 0; }
     }
 
     void Update()

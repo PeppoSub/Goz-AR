@@ -11,7 +11,6 @@ public class MissionSelect : MonoBehaviour
     public GameObject lev1;
     public GameObject lev2;
     public GameObject lev3;
-    public GameObject lev4;
 
     private int level1 = 0;
     private int level2 = 0;
@@ -95,18 +94,12 @@ public class MissionSelect : MonoBehaviour
         else if (theParentName == "Portal")
         {
             theTargetText.text = "Loading (AR Portal) ...";
-            SetCurrentMission(4);
-            // LevelLoader.LoadLevel(3);     // maybe: create a separate scene for portal
+            LevelLoader.LoadLevel(3);     // separate scene for portal only
         }
-        else if (theParentName == "Menu")
+        else if (theParentName == "Credits")
         {
             theTargetText.text = "Loading (Credits) ...";
             LevelLoader.LoadLevel(2);     // scene index of the credit scene or menu
-        }
-        else if (theParentName == "Info")
-        {
-            theTargetText.text = "Loading (Info) ...";
-            LevelLoader.LoadLevel(3);     // hidden scene (placeholder)
         }
         else
         {
@@ -130,19 +123,19 @@ public class MissionSelect : MonoBehaviour
         lev1.SetActive(true);
         lev2.SetActive(false);
         lev3.SetActive(false);
-        lev4.SetActive(false);
+        //lev4.SetActive(false);
 
         //if (level0 == 1) { ... }
         if (level1 == 1) { lev2.SetActive(true); }
         if (level2 == 1) { lev3.SetActive(true); }
-        if (level3 == 1) { lev4.SetActive(true); }
+        //if (level3 == 1) { lev4.SetActive(true); }
 
         if(level3 == 1)
         {
             lev1.transform.position = new Vector3(-1.6f, 0.22f, 2.6f);
             lev2.transform.position = new Vector3(1.6f, 0.15f, 2.5f);
             lev3.transform.position = new Vector3(-0.1f, 0.25f, 2f);
-            lev4.transform.position = new Vector3(-2f, 1.1f, 2.5f);
+            //lev4.transform.position = new Vector3(-2f, 1.1f, 2.5f);
         }
         else if (level2 == 1)
         {
