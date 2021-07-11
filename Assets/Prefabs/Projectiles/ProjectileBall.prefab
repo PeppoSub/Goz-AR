@@ -127,11 +127,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   rotation: {x: 1, y: 1, z: 1}
-  damage: 4
+  damage: 5
   coolDown: 0.5
   stayOnGround: 0
-  destroyOnImpact: 1
-  lifeTime: 3
+  destroyOnImpact: 0
+  lifeTime: 5
   maxFar: 10
   groundCorrection: 0.05
   hitSmoke: {fileID: 100002, guid: 64a73d5482e0afd4bb298a8bde0e933f, type: 3}

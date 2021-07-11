@@ -21,7 +21,8 @@ public class WeaponScript : MonoBehaviour
 
     void Start()
     {
-        selected = GameStatus.selectedWeapon;   // assign correct weapon based on level (can remove but I am lazy to change 9 occurrences)
+        selected = 0;
+        if(theProjectiles.Length > 1) { selected = GameStatus.selectedWeapon; }
 
         // initialize weapon parameters
         thrust = theProjectiles[selected].GetComponent<ProjectileLastingOnGround>().speed;
