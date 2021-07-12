@@ -31,10 +31,12 @@ public class GyroCamera : MonoBehaviour
 
     private void Update()
     {
+#if !UNITY_EDITOR
         ApplyGyroRotation();
         ApplyCalibration();
 
         transform.rotation = Quaternion.Slerp(transform.rotation, _rawGyroRotation.rotation, _smoothing);
+#endif
     }
 
     private IEnumerator CalibrateYAngle()

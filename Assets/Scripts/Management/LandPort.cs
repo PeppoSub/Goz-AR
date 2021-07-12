@@ -14,6 +14,8 @@ public class LandPort : MonoBehaviour
     private Vector3 portraitCameraPos;
     private Quaternion defaultCameraRot;
     private Quaternion portraitCameraRot;
+    private float defaultFieldOfView;
+    private float portraitFieldOfView;
     //private bool portrait;
 
     void Start()
@@ -22,7 +24,7 @@ public class LandPort : MonoBehaviour
         portraitCameraPos = portraitCamera.transform.position;
         defaultCameraRot = this.gameObject.transform.rotation;
         portraitCameraRot = portraitCamera.transform.rotation;
-        //portraitCameraPos = new Vector3(defaultCameraPos.x + 0.1f, defaultCameraPos.y + 2.2f, defaultCameraPos.z - 7.2f);
+        defaultFieldOfView = this.gameObject.GetComponent<Camera>().fieldOfView;
 
         //portrait = false; 
     }
@@ -33,6 +35,7 @@ public class LandPort : MonoBehaviour
         {
             this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, portraitCameraPos, cameraSpeed* Time.deltaTime);
             this.gameObject.transform.rotation = Quaternion.Lerp(this.gameObject.transform.rotation, portraitCameraRot, cameraSpeed * Time.deltaTime);
+            //this.gameObject.GetComponent<Camera>().fieldOfView = portraitFieldOfView;
             //theTargetText.text = "Portrait";
             //portrait = true;
         }
@@ -40,6 +43,7 @@ public class LandPort : MonoBehaviour
         {
             this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, defaultCameraPos, cameraSpeed * Time.deltaTime);
             this.gameObject.transform.rotation = Quaternion.Lerp(this.gameObject.transform.rotation, defaultCameraRot, cameraSpeed * Time.deltaTime);
+            //this.gameObject.GetComponent<Camera>().fieldOfView = defaultFieldOfView;
             //theTargetText.text = "LandScape";
         }
         // Debug.Log("Screen.orientation = " + Screen.orientation);

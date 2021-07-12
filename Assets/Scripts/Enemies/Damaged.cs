@@ -22,10 +22,13 @@ public class Damaged : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        gameStatus = GameObject.FindWithTag("GameController").GetComponent<GameStatus>();
-}
+        if(GameObject.FindWithTag("GameController") != null)
+        { 
+            gameStatus = GameObject.FindWithTag("GameController").GetComponent<GameStatus>();   
+        }
+    }
 
-void Update()
+    void Update()
     {
         // if(health<criticalHealth) { // glow red or something ... }
     }
