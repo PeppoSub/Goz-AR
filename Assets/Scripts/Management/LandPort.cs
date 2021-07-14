@@ -40,7 +40,7 @@ public class LandPort : MonoBehaviour
         {
             this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, portraitCameraPos, cameraSpeed* Time.deltaTime);
             this.gameObject.transform.rotation = Quaternion.Lerp(this.gameObject.transform.rotation, portraitCameraRot, cameraSpeed * Time.deltaTime);
-            if (theTargetText != null) { theTargetText.text = "Better in landscape ..."; }
+            if (theTargetText != null) { theTargetText.text = "Looks better in landscape ..."; }
         }
         else 
         {

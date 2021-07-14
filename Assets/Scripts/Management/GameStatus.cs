@@ -22,6 +22,9 @@ public class GameStatus : MonoBehaviour
     public static int nBombs;             // bombs available
     public static int selectedWeapon;     // weapon in use
     public static float groundLevel;      // ground level (y)
+    public static int speedMultiplier;    // 1/3 multiplier of basic enemy speed (1 to 30 = 0.33 to 10, normal = 3)
+    public static int spawnFrequency;     // sets spawn frequency every 3 seconds (1 to 30 = 0.33Hz to 10Hz, normal = 3)
+    public static int missionGoal;        // exponent in the power 3^(N-2) which multiplies the goal (1,2,3,4 = -1,0,1,2 = 0.33,1,3,9, normal = 1) 
 
     public GameObject bloodyDamage;       // screen border when the player gets hit
     public GameObject brokenGlass;        // screen effect when game over
@@ -43,11 +46,26 @@ public class GameStatus : MonoBehaviour
 
     void Start()
     {
-        //mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
-        mission = PlayerPrefs.GetInt("currentMission") - 1;
+        // load playerprefs stuff  
+        speedMultiplier = PlayerPrefs.GetInt("speedMultiplier",-1) ; 
+        spawnFrequency = PlayerPrefs.GetInt("spawnFrequency", -1);   
+        missionGoal = PlayerPrefs.GetInt("missionGoal", -1);     
+        mission = PlayerPrefs.GetInt("currentMission", 1) - 1;
 #if UNITY_EDITOR
         mission = 0;
+        //mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
 #endif
+
+        if (missionGoal > 0) 
+        { 
+            for(int i = 0;i< goal.Length;i++)
+            {
+                goal[i] = (int)(goal[i] * Mathf.Pow(3, missionGoal-2));
+                timelimit[i] = (int)(timelimit[i] * Mathf.Pow(3, missionGoal-2));
+                // boss health not implemented !
+            }
+        }
+
         selectedWeapon = mission; // weapons[mission];  
         score = 0;
         life = initlife[mission];

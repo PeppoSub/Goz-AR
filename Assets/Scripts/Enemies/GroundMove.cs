@@ -30,6 +30,13 @@ public class GroundMove : MonoBehaviour
         //slideSpeed = 0;
         seconds = 0;
         phase = Random.Range(0, 2 * Mathf.PI);
+
+        if (GameStatus.speedMultiplier > 0) 
+        { 
+            maxSpeed = maxSpeed * GameStatus.speedMultiplier / 10f ;
+            sideSpeed = sideSpeed * GameStatus.speedMultiplier / 10f ;
+            stepTime = stepTime / (GameStatus.speedMultiplier / 10f) ;
+        }
     }
 
     void Update()

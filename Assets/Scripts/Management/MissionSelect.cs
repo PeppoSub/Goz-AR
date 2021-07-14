@@ -154,12 +154,26 @@ public class MissionSelect : MonoBehaviour
         }
     }
 
-    private void ResetPlayerPrefs()
+    private void ResetMissionStatus()
     {
         PlayerPrefs.SetInt("level0", 0);
         PlayerPrefs.SetInt("level1", 0);
         PlayerPrefs.SetInt("level2", 0);
         PlayerPrefs.SetInt("level3", 0);
+        PlayerPrefs.SetInt("currentMission", 0);
         PlayerPrefs.Save();
+    }
+
+    private void ResetDifficultyLevel()
+    {
+        PlayerPrefs.SetInt("speedMultiplier", -1);
+        PlayerPrefs.SetInt("spawnFrequency", -1);
+        PlayerPrefs.SetInt("missionGoal", -1);
+        PlayerPrefs.Save();
+    }
+
+    private void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

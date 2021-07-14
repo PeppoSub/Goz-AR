@@ -1380,13 +1380,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<u><b>Goz-AR v1.0</b></u>\n\nan Augmenter Reality game demo \ndeveloped
-    in Unity with AR-Foundation 4.1.7\nand a bunch of free assets\n\n<i>was supposed
-    to be a completely different, much lamer project, but the lord works in mysterious
+    in Unity with AR-Foundation 4.1.7\nand a bunch of free assets\n\n<i>it started
+    as a completely different, much lamer project, but the lord works in mysterious
     ways ...</i>\n\nIt is my first game. \nPlease, be gentle with me :)\n\nIf you
-    have any suggestions for improvement, complaints or whatever, or if you wish
-    to participate to my next project, email me.\n\nMy email:   pepposmart@gmail.com
-    \nMy GitHub:   https://github.com/PeppoSub/\n\nSpecial thanks to Lele & Max.\nAnd
-    look forward to my next game!\n"
+    have any suggestions, complaints or whatever, or if you wish to participate to
+    my next project, email me.\n\nMy email:   pepposmart@gmail.com \nMy GitHub:  
+    https://github.com/PeppoSub/\n\nSpecial thanks to Lele & Max.\nAnd look forward
+    to my next game!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1975,7 +1975,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790928596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.46, y: 3.05, z: -0.9}
+  m_LocalPosition: {x: -2.5, y: 3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422109662}
@@ -2020,7 +2020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793915486}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 4.2, z: -3.12}
+  m_LocalPosition: {x: 3, y: 4.2, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1508454307}
@@ -3227,7 +3227,6 @@ GameObject:
   - component: {fileID: 1400437589}
   - component: {fileID: 1400437588}
   - component: {fileID: 1400437587}
-  - component: {fileID: 1400437590}
   - component: {fileID: 1400437591}
   m_Layer: 0
   m_Name: Main Camera
@@ -3269,7 +3268,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 69
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3301,22 +3300,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
---- !u!114 &1400437590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400437586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74afb4a65913cac4db6a441e8aea2573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraSpeed: 3
-  portraitCamera: {fileID: 0}
-  viewAngle: 69
-  theTargetText: {fileID: 0}
 --- !u!114 &1400437591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3363,7 +3346,7 @@ Transform:
   - {fileID: 344458362}
   - {fileID: 44677895}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1462785623
 PrefabInstance:
@@ -4791,89 +4774,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!81 &1090342429306269760
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090342429306269761}
-  m_Enabled: 1
---- !u!1 &1090342429306269761
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1090342429306269762}
-  - component: {fileID: 1090342429306269763}
-  - component: {fileID: 1090342429306269760}
-  m_Layer: 0
-  m_Name: Portrait Camera
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1090342429306269762
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090342429306269761}
-  m_LocalRotation: {x: 0.13040192, y: -0.043246232, z: 0.005693473, w: 0.9905012}
-  m_LocalPosition: {x: 1, y: 2, z: -3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 15, y: -5, z: 0}
---- !u!20 &1090342429306269763
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090342429306269761}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!223 &2497914698508989736
 Canvas:
   m_ObjectHideFlags: 0

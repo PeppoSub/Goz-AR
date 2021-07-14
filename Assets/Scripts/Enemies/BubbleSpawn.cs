@@ -21,6 +21,8 @@ public class BubbleSpawn : MonoBehaviour
         started = false;
         spawnInterval = (float)WaitTimeSeconds;
         seconds = 0f;
+
+        if(GameStatus.spawnFrequency>0) { spawnInterval = 3f / GameStatus.spawnFrequency; }
     }
 
     void Update()

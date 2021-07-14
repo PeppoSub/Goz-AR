@@ -29,12 +29,20 @@ public class AirMove : MonoBehaviour
         Vector3 playerPos = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
         spawnPoint = this.transform.position;
         initDistance = Vector3.Distance(playerPos, spawnPoint);
-        flySpeed = 0;
         seconds = 0;
         phase = Random.Range(0, 2 * Mathf.PI);
         airBorn = false;
         if (phase < Mathf.PI) { leftRight = 1; }
         else { leftRight = -1;  }
+
+        if (GameStatus.speedMultiplier > 0)
+        {
+            flySpeed = maxSpeed * GameStatus.speedMultiplier / 10f ;
+            sideSpeed = sideSpeed * GameStatus.speedMultiplier / 10f ;
+            updownSpeed = updownSpeed * GameStatus.speedMultiplier / 10f;
+            stepTime = stepTime / (GameStatus.speedMultiplier / 10f) ;
+        }
+        else { flySpeed = 0; }   // slowly accelerates up as before, other speed unchanged
     }
 
     void Update()
