@@ -7,7 +7,7 @@ public class BubbleSpawn : MonoBehaviour
     public GameObject[] bubbles;                // prefabs of the objects to spawn
 
     public int initSleep = 3;                   // sleep for N seconds befor starting to spawn
-    public int WaitTimeSeconds = 2;             // initial interval between spawns
+    public int WaitTimeSeconds = 2;             // initial interval between spawns (is an 'int' for hystorical reasons)
     public float shift = 0.1f;                  // spread in the spawning position
     public float speedUp = 0f;                  // spawner speed-up factor:  deltaT = deltaT - (speedUp * seconds)/60
 
@@ -22,7 +22,16 @@ public class BubbleSpawn : MonoBehaviour
         spawnInterval = (float)WaitTimeSeconds;
         seconds = 0f;
 
-        if(GameStatus.spawnFrequency>0) { spawnInterval = 3f / GameStatus.spawnFrequency; }
+        GameStatus.ReloadDifficultySettings();
+        if (GameStatus.spawnFrequency > 0) 
+        {
+            float frequency = GameStatus.spawnFrequency / 2f;   // see GameStatus about multiplier values
+            spawnInterval = 1f / frequency;                     // overrides basic interval & speedUp 
+            speedUp = 0f;
+            //WaitTimeSeconds = (int)spawnInterval;
+        }
+        //Debug.Log("spawnInterval = " + spawnInterval.ToString());
+        //Debug.Log("GameStatus.spawnFrequency = " + GameStatus.spawnFrequency);
     }
 
     void Update()
@@ -45,6 +54,7 @@ public class BubbleSpawn : MonoBehaviour
             StartCoroutine(StartSpawning());
             started = true;
         }
+
     }
 
     IEnumerator StartSpawning()
@@ -62,5 +72,7 @@ public class BubbleSpawn : MonoBehaviour
 
         Instantiate(bubbleToSpawn, randomSpawn, Quaternion.identity);
         StartCoroutine(StartSpawning());
+
+        Debug.Log("spawnInterval = " + spawnInterval.ToString());
     }
 }

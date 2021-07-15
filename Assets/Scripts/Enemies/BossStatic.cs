@@ -8,8 +8,17 @@ public class BossStatic : MonoBehaviour
 
     void Start()
     {
-        //gameObject.GetComponent<Damaged>().maxHealth = GameStatus.bossEnergy;
-        //Debug.Log("GameStatus.bossEnergy = " + GameStatus.bossEnergy);
+        energy = this.gameObject.GetComponent<Damaged>().maxHealth;
+
+        GameStatus.ReloadDifficultySettings();
+        if (GameStatus.missionGoal > 0)
+        {
+            float multiplier = Mathf.Pow(3, GameStatus.missionGoal - 2);  // see GameStatus about multiplier values
+            energy = (int)(energy * multiplier);
+            this.gameObject.GetComponent<Damaged>().ResetHealth(energy);
+        }
+
+        Debug.Log("energy = " + energy);
     }
 
     void Update()

@@ -10,6 +10,8 @@ public class LandPort : MonoBehaviour
     public GameObject portraitCamera;
     public float viewAngle = 0f;
     public TextMeshProUGUI theTargetText;
+    public string portraitMessage = "It plays better in landscape ...";
+    //public string landscapeMessage = "";  // use originalText instead
 
     private Vector3 defaultCameraPos;
     private Vector3 portraitCameraPos;
@@ -40,7 +42,7 @@ public class LandPort : MonoBehaviour
         {
             this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, portraitCameraPos, cameraSpeed* Time.deltaTime);
             this.gameObject.transform.rotation = Quaternion.Lerp(this.gameObject.transform.rotation, portraitCameraRot, cameraSpeed * Time.deltaTime);
-            if (theTargetText != null) { theTargetText.text = "Looks better in landscape ..."; }
+            if ((theTargetText != null) && (portraitMessage.Length > 0)) { theTargetText.text = portraitMessage; }
         }
         else 
         {

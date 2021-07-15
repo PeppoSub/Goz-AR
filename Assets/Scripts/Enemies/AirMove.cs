@@ -37,10 +37,11 @@ public class AirMove : MonoBehaviour
 
         if (GameStatus.speedMultiplier > 0)
         {
-            flySpeed = maxSpeed * GameStatus.speedMultiplier / 10f ;
-            sideSpeed = sideSpeed * GameStatus.speedMultiplier / 10f ;
-            updownSpeed = updownSpeed * GameStatus.speedMultiplier / 10f;
-            stepTime = stepTime / (GameStatus.speedMultiplier / 10f) ;
+            float multiplier = GameStatus.speedMultiplier / 3f;  // see GameStatus about multiplier values
+            maxSpeed = maxSpeed * multiplier;
+            sideSpeed = sideSpeed * multiplier;
+            updownSpeed = updownSpeed * multiplier;
+            //stepTime = stepTime / multiplier;
         }
         else { flySpeed = 0; }   // slowly accelerates up as before, other speed unchanged
     }

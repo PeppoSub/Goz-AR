@@ -1380,11 +1380,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<u><b>Goz-AR v1.0</b></u>\n\nan Augmenter Reality game demo \ndeveloped
-    in Unity with AR-Foundation 4.1.7\nand a bunch of free assets\n\n<i>it started
-    as a completely different, much lamer project, but the lord works in mysterious
-    ways ...</i>\n\nIt is my first game. \nPlease, be gentle with me :)\n\nIf you
-    have any suggestions, complaints or whatever, or if you wish to participate to
-    my next project, email me.\n\nMy email:   pepposmart@gmail.com \nMy GitHub:  
+    in Unity 2020.3 \nwith AR-Foundation 4.1.7 \nand a bunch of free assets\n\n<i>it
+    started as a completely different, much lamer project, but the lord works in
+    mysterious ways ...</i>\n\nIt is my first game. \nPlease, be gentle with me :)\n\nIf
+    you have any suggestions, complaints or whatever, or if you wish to participate
+    to my next project, email me.\n\nMy email:   pepposmart@gmail.com \nMy GitHub:  
     https://github.com/PeppoSub/\n\nSpecial thanks to Lele & Max.\nAnd look forward
     to my next game!\n"
   m_isRightToLeft: 0
@@ -3313,8 +3313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _smoothing: 0.1
-  limitCos: 2
-  lookAtThis: {fileID: 0}
 --- !u!1 &1456019705
 GameObject:
   m_ObjectHideFlags: 0
@@ -5113,7 +5111,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Goz-AR
+  m_Text: Goz-VR
 --- !u!222 &7364626382382826613
 CanvasRenderer:
   m_ObjectHideFlags: 0

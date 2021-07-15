@@ -32,10 +32,11 @@ public class GroundMove : MonoBehaviour
         phase = Random.Range(0, 2 * Mathf.PI);
 
         if (GameStatus.speedMultiplier > 0) 
-        { 
-            maxSpeed = maxSpeed * GameStatus.speedMultiplier / 10f ;
-            sideSpeed = sideSpeed * GameStatus.speedMultiplier / 10f ;
-            stepTime = stepTime / (GameStatus.speedMultiplier / 10f) ;
+        {
+            float multiplier = GameStatus.speedMultiplier / 3f;  // see GameStatus about multiplier values
+            maxSpeed = maxSpeed * multiplier;
+            sideSpeed = sideSpeed * multiplier;
+            //stepTime = stepTime / multiplier;
         }
     }
 

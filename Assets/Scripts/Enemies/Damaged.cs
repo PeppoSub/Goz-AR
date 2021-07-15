@@ -69,4 +69,10 @@ public class Damaged : MonoBehaviour
         }
     }
 
+    public void ResetHealth(int h)
+    {
+        maxHealth = h;
+        health = maxHealth;
+    }
+
 }

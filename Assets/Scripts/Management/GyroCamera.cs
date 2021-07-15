@@ -13,10 +13,6 @@ public class GyroCamera : MonoBehaviour
     // SETTINGS
     [SerializeField] private float _smoothing = 0.1f;
 
-    public float limitCos = 0.5f;
-    public GameObject lookAtThis;
-    private bool restoring = false;
-
     private IEnumerator Start()
     {
         Input.gyro.enabled = true;
@@ -35,32 +31,15 @@ public class GyroCamera : MonoBehaviour
 
     private void Update()
     {
-        if (lookAtThis != null) 
-        {
-            Vector3 direction = lookAtThis.gameObject.transform.position - this.gameObject.transform.position;
-            direction = direction.normalized;
-            Vector3 gyroVector = _rawGyroRotation.rotation * Vector3.forward;
-            gyroVector = gyroVector.normalized;
-            Quaternion toRotation = Quaternion.FromToRotation(this.gameObject.transform.forward, direction);
-
-            float cos = Vector3.Dot(direction, gyroVector);
-            //Debug.Log("cos = " + cos);
-
-            // ... use the restoring variable to make it go back
-            if (cos < limitCos) { transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, _smoothing); }
-        } 
-        else 
-        {
 //#if !UNITY_EDITOR
           ApplyGyroRotation();
           ApplyCalibration();
 
           transform.rotation = Quaternion.Slerp(transform.rotation, _rawGyroRotation.rotation, _smoothing);
 //#endif
-        }
     }
 
-        private IEnumerator CalibrateYAngle()
+    private IEnumerator CalibrateYAngle()
     {
         _tempSmoothing = _smoothing;
         _smoothing = 1;
