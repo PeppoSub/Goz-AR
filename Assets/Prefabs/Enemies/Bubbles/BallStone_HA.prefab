@@ -271,9 +271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 1
   maxHi: 1
+  spreadDistance: 1
   hitDistance: 1
   maxDistance: 30
-  sideMove: 0
+  sideMove: 0.1
   updownMove: 0
   sideSpeed: 0.2
   updownSpeed: 0.2
@@ -294,6 +295,8 @@ MonoBehaviour:
   maxHealth: 10
   criticalHealth: 3
   enemyScore: 1
+  bombDrop: 0
+  lifeDrop: 0
   theChildren: {fileID: 0}
   nChildren: 0
   deathSmoke: {fileID: 1975141522878942813, guid: 6260e17cecbc65640a310002c099e179, type: 3}

@@ -11,6 +11,8 @@ public class MissionSelect : MonoBehaviour
     public GameObject lev1;
     public GameObject lev2;
     public GameObject lev3;
+    public GameObject portal;
+    public GameObject difficulty;
 
     private int level1 = 0;
     private int level2 = 0;
@@ -26,6 +28,7 @@ public class MissionSelect : MonoBehaviour
         level1 = PlayerPrefs.GetInt("level1");
         level2 = PlayerPrefs.GetInt("level2");
         level3 = PlayerPrefs.GetInt("level3");
+        PlayerPrefs.DeleteKey("currentMission");
 
         PlaceSelectables();
 
@@ -123,19 +126,19 @@ public class MissionSelect : MonoBehaviour
         lev1.SetActive(true);
         lev2.SetActive(false);
         lev3.SetActive(false);
-        //lev4.SetActive(false);
+        portal.SetActive(false);
+        difficulty.SetActive(false);
 
         //if (level0 == 1) { ... }
-        if (level1 == 1) { lev2.SetActive(true); }
+        if (level1 == 1) { lev2.SetActive(true); portal.SetActive(true); }
         if (level2 == 1) { lev3.SetActive(true); }
-        //if (level3 == 1) { lev4.SetActive(true); }
+        if (level3 == 1) { difficulty.SetActive(true); }
 
         if(level3 == 1)
         {
             lev1.transform.position = new Vector3(-1.6f, 0.22f, 2.6f);
             lev2.transform.position = new Vector3(1.6f, 0.15f, 2.5f);
             lev3.transform.position = new Vector3(-0.1f, 0.25f, 2f);
-            //lev4.transform.position = new Vector3(-2f, 1.1f, 2.5f);
         }
         else if (level2 == 1)
         {
@@ -156,19 +159,19 @@ public class MissionSelect : MonoBehaviour
 
     private void ResetMissionStatus()
     {
-        PlayerPrefs.SetInt("level0", 0);
-        PlayerPrefs.SetInt("level1", 0);
-        PlayerPrefs.SetInt("level2", 0);
-        PlayerPrefs.SetInt("level3", 0);
-        PlayerPrefs.SetInt("currentMission", 0);
+        //PlayerPrefs.SetInt("level0", 0);
+        PlayerPrefs.DeleteKey("level1");
+        PlayerPrefs.DeleteKey("level2");
+        PlayerPrefs.DeleteKey("level3");
+        PlayerPrefs.DeleteKey("currentMission");
         PlayerPrefs.Save();
     }
 
     private void ResetDifficultyLevel()
     {
-        PlayerPrefs.SetInt("speedMultiplier", -1);
-        PlayerPrefs.SetInt("spawnFrequency", -1);
-        PlayerPrefs.SetInt("missionGoal", -1);
+        PlayerPrefs.DeleteKey("speedMultiplier");
+        PlayerPrefs.DeleteKey("spawnFrequency");
+        PlayerPrefs.DeleteKey("missionGoal");
         PlayerPrefs.Save();
     }
 

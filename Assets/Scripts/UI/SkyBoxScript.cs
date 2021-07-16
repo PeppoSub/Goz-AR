@@ -9,19 +9,17 @@ public class SkyBoxScript : MonoBehaviour
 
 	void Start()
 	{
+		current = PlayerPrefs.GetInt("skyBox", -1);
 
-		//RenderSettings.skybox = skyTwo;
+		if(current < 0) { current = 0; }
+		else { ChangeSky(); }
 
-	}
-
-	void Update()
-	{
-
+		PlayerPrefs.SetInt("skyBox", current);
+		PlayerPrefs.Save();
 	}
 
 	public void ChangeSky()
 	{
-		//int n = 
 		current = (current + 1) % skyBoxes.Length;
 		RenderSettings.skybox = skyBoxes[current];
 	}

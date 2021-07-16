@@ -9,21 +9,23 @@ public class GameStatus : MonoBehaviour
 {
     // mission items into arrays, so I can dynamically select things based on level ... (portal: mission = 4)
     //private int[] weapons = { 0, 1, 2 , 3};      // weapon in use [for each mission] - object array is in WeaponScript.cs attached to PlayerHUD
-    private int[] initlife = { 3, 3, 3, -1 };      // lives at start [of each mission]
     private int[] goal = { 30, -1, -1, -1 };       // score goal [of each mission]
     private int[] timelimit = { -1, 60, -1, -1 };  // timelimit (survival mode) [of each mission]
     private int[] initbombs = { 0, 0, 3, 0 };      // bombs at start [of each mission]
+    private int initlife = 3;                      // lives at start (plus completion bonus)
 
     public static int score;              // current score
     public static int life;               // current lives
     public static bool gotHit;            // becomes true when hit
     public static bool bossKill;          // becomes true when kill boss
-    public static int mission;            // current mission
-    public static int nBombs;             // bombs available
-    public static int selectedWeapon;     // weapon in use
+    public static int mission;            // current mission (from PlayerPrefs)
+    public static int nBombs;             // bombs available (from PlayerPrefs)
+    public static int selectedWeapon;     // weapon in use (from PlayerPrefs)
     public static float groundLevel;      // ground level (y)
     public static int bossHealth;         // current boss health
     public static int bossMaxHealth;      // boss max health
+
+    public static int nCompletions;       // how many time killed the boss (from PlayerPrefs)
 
     public static int speedMultiplier;    // 1/3 multiplier of basic enemy speed (1 to 15 = 0.33 to 5 m/s, normal = 3)
     public static int spawnFrequency;     // sets spawn frequency every 2 seconds (1 to 20 = 0.5Hz to 10 Hz, normal = 2)
@@ -43,6 +45,8 @@ public class GameStatus : MonoBehaviour
     public TextMeshProUGUI scoreText;     // hud text ...
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI bossText;
+    public GameObject timerDisplay;       // timer icon and counter
+    public GameObject bossDisplay;        // boss health
 
     private Button button;
     private Button bombutton;
@@ -59,6 +63,7 @@ public class GameStatus : MonoBehaviour
         mission = 0;
         //mission = SceneManager.GetActiveScene().buildIndex - 1;     // PlayerPrefs.GetInt("currentMission"); // 
 #endif
+        nCompletions = PlayerPrefs.GetInt("nCompletion", 0);            // 
 
         if (missionGoal > 0)   // GameStatus.missionGoal
         { 
@@ -72,7 +77,9 @@ public class GameStatus : MonoBehaviour
 
         selectedWeapon = mission; // weapons[mission];  
         score = 0;
-        life = initlife[mission];
+
+        life = initlife + nCompletions; if(life>5) { life = 5; }  // maximum 5 lives
+
         gotHit = false;
         bossKill = false;
         Time.timeScale = 1f;
@@ -95,6 +102,10 @@ public class GameStatus : MonoBehaviour
         {
             healthBar[i].SetActive(false);
         }
+
+        timerDisplay.SetActive(false);
+        bossDisplay.SetActive(false);
+
     }
 
     void Update()
@@ -106,7 +117,7 @@ public class GameStatus : MonoBehaviour
         if (goal[mission] > 0) { textbuffer += goal[mission].ToString(); } else { textbuffer += "-"; }
         scoreText.text = textbuffer;
 
-        if(initlife[mission] > 0)
+        if(healthBar.Length > 0)
         {
             for(int i = 0;i<healthBar.Length; i++)
             {
@@ -115,14 +126,21 @@ public class GameStatus : MonoBehaviour
             }
         }
 
-        textbuffer = "" + ((int)secondsCount).ToString() + "/";
-        if (timelimit[mission] > 0) { textbuffer += timelimit[mission].ToString(); } else { textbuffer += "-"; }
-        timeText.text = textbuffer;
+        if((mission > 0) && (timerDisplay != null))
+        {
+            timerDisplay.SetActive(true);
+            textbuffer = "" + ((int)secondsCount).ToString() + "/";
+            if (timelimit[mission] > 0) { textbuffer += timelimit[mission].ToString(); } else { textbuffer += "-"; }
+            timeText.text = textbuffer;
+        }
 
-        // //if (bossMission)
-        textbuffer = "" + bossHealth.ToString() + "/";
-        if(bossMaxHealth > 0) { textbuffer += bossMaxHealth.ToString(); } else { textbuffer += "-"; }
-        bossText.text = textbuffer;
+        if ((mission>1) && (bossDisplay != null))
+        {
+            bossDisplay.SetActive(true);
+            textbuffer = "" + bossHealth.ToString() + "/";
+            if (bossMaxHealth > 0) { textbuffer += bossMaxHealth.ToString(); } else { textbuffer += "-"; }
+            bossText.text = textbuffer;
+        }
 
         if (nBombs > 0) { bombButton.SetActive(true); }
         else { bombButton.SetActive(false); }
@@ -138,13 +156,15 @@ public class GameStatus : MonoBehaviour
             YouWin();
         }
 
-        if ((initlife[mission] > 0) && (life <= 0))
+        if ((initlife > 0) && (life <= 0))
         {
             YouLose();
         }
 
         if (bossKill)
         {
+            nCompletions += 1;
+            PlayerPrefs.SetInt("nCompletion", nCompletions);
             YouWin();
         }
 

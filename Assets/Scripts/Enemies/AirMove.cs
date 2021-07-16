@@ -6,6 +6,7 @@ public class AirMove : MonoBehaviour
 {
     public float maxSpeed = 1f;
     public float maxHi = 1f;
+    public float rndHi = 0.2f;         // randomize max Hi (+ x%)
     public float spreadDistance = 1f;  // how far to spread from the spawning point (flat distance)
     public float hitDistance = 1f;     // at what distance they hit the player
     public float maxDistance = 30f;    // at what distance they are out of the game
@@ -66,9 +67,10 @@ public class AirMove : MonoBehaviour
 
         // reach maxHi wrt ground level and spread-out, then fly toward the player
         float relativeHi = this.transform.position.y - GameStatus.groundLevel;
+        if (rndHi > 0) { relativeHi += rndHi * relativeHi * Random.Range(0f, 1f); }  // randomize hight (+ x%)
         if ((relativeHi < maxHi) && !airBorn)
         {
-            this.transform.Translate(Vector3.up * Time.deltaTime * flySpeed);
+            this.transform.Translate(Vector3.up * Time.deltaTime * 3f * flySpeed);
             if(flatDistance < spreadDistance)
             { 
                this.transform.Translate(leftRight * (phase/Mathf.PI) * OrthOriz(vectorDistance) * Time.deltaTime * (flySpeed/4f));

@@ -47,12 +47,16 @@ public class GroundMove : MonoBehaviour
 
         float distanceFromSpawn = Vector3.Distance(this.transform.position, spawnPoint);
 
-        Vector3 playerPos = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
+        Transform target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+        Vector3 playerPos = target.position; // GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
         Vector3 vectorDistance = playerPos - this.transform.position;
         float distance = vectorDistance.magnitude;
         vectorDistance.y = 0f;
         float flatDistance = vectorDistance.magnitude;
         vectorDistance.Normalize();
+
+        // // always face player  ... seems to affect movement!
+        // transform.LookAt(target);
 
         // destroy bubbles that get too far ... it does not happen as all bubbles go to player
         if (distance > maxDistance) { Destroy(gameObject); }
