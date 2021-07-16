@@ -75,4 +75,8 @@ public class Damaged : MonoBehaviour
         health = maxHealth;
     }
 
+    public int CurrentHealth()
+    {
+        return (int)health;
+    }
 }

@@ -22,9 +22,11 @@ public class GameStatus : MonoBehaviour
     public static int nBombs;             // bombs available
     public static int selectedWeapon;     // weapon in use
     public static float groundLevel;      // ground level (y)
+    public static int bossHealth;         // current boss health
+    public static int bossMaxHealth;      // boss max health
 
-    public static int speedMultiplier;    // 1/3 multiplier of basic enemy speed (1 to 30 = 0.33 to 10, normal = 3)
-    public static int spawnFrequency;     // sets spawn frequency every 2 seconds (1 to 20 = 0.5Hz to 10Hz, normal = 2)
+    public static int speedMultiplier;    // 1/3 multiplier of basic enemy speed (1 to 15 = 0.33 to 5 m/s, normal = 3)
+    public static int spawnFrequency;     // sets spawn frequency every 2 seconds (1 to 20 = 0.5Hz to 10 Hz, normal = 2)
     public static int missionGoal;        // exponent in the power 3^(N-2) which multiplies the goal (1,2,3,4 = -1,0,1,2 = 0.33,1,3,9, normal = 2) 
 
     public GameObject bloodyDamage;       // screen border when the player gets hit
@@ -40,6 +42,7 @@ public class GameStatus : MonoBehaviour
     public GameObject lifeAnim;           // ...
     public TextMeshProUGUI scoreText;     // hud text ...
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI bossText;
 
     private Button button;
     private Button bombutton;
@@ -75,6 +78,9 @@ public class GameStatus : MonoBehaviour
         Time.timeScale = 1f;
         secondsCount = 0f;
         nBombs = initbombs[mission];
+
+        bossHealth = -1;
+        bossMaxHealth = -1;
 
         groundLevel = 0f;
         GameObject[] spawner = GameObject.FindGameObjectsWithTag("Spawner");
@@ -112,6 +118,11 @@ public class GameStatus : MonoBehaviour
         textbuffer = "" + ((int)secondsCount).ToString() + "/";
         if (timelimit[mission] > 0) { textbuffer += timelimit[mission].ToString(); } else { textbuffer += "-"; }
         timeText.text = textbuffer;
+
+        // //if (bossMission)
+        textbuffer = "" + bossHealth.ToString() + "/";
+        if(bossMaxHealth > 0) { textbuffer += bossMaxHealth.ToString(); } else { textbuffer += "-"; }
+        bossText.text = textbuffer;
 
         if (nBombs > 0) { bombButton.SetActive(true); }
         else { bombButton.SetActive(false); }
@@ -209,6 +220,17 @@ public class GameStatus : MonoBehaviour
             life += ld;
             if (lifeAnim != null) { lifeAnim.SetActive(true); }
         }
+    }
+
+    public static void BossHealth(int health, int maxHealth)
+    {
+        bossHealth = health;  
+        bossMaxHealth = maxHealth;
+        
+        // //if (bossMission)
+        //string textbuffer = "" + ((int)health).ToString() + "/";
+        //if(maxHealth > 0) { textbuffer += maxHealth.ToString(); } else { textbuffer += "-"; }
+        //bossText.text = textbuffer;
     }
 
     public static void ReloadDifficultySettings()

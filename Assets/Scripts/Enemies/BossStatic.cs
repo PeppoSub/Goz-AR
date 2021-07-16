@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BossStatic : MonoBehaviour
 {
-    private int energy;
+    public int energy;
+    public int maxEnergy;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class BossStatic : MonoBehaviour
             energy = (int)(energy * multiplier);
             this.gameObject.GetComponent<Damaged>().ResetHealth(energy);
         }
+        maxEnergy = energy;
 
         Debug.Log("energy = " + energy);
     }
@@ -25,6 +27,10 @@ public class BossStatic : MonoBehaviour
     {
         Transform target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
         transform.LookAt(target);
+
+        energy = this.gameObject.GetComponent<Damaged>().CurrentHealth();
+
+        GameStatus.BossHealth(energy, maxEnergy);
     }
 
     void OnDestroy()
