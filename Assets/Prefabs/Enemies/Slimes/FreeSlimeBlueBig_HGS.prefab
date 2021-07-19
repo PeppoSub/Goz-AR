@@ -525,7 +525,7 @@ MonoBehaviour:
   maxHealth: 10
   criticalHealth: 3
   enemyScore: 1
-  bombDrop: 1
+  bombDrop: 0
   lifeDrop: 0
   theChildren: {fileID: 3236969977178045566, guid: 35ab4962630451346840d032030fffc0, type: 3}
   nChildren: 2

@@ -53,7 +53,7 @@ MonoBehaviour:
   initSleep: 3
   WaitTimeSeconds: 2
   shift: 0.1
-  speedUp: 0
+  speedUp: 0.05
 --- !u!114 &3200645609143067485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   initSleep: 3
   WaitTimeSeconds: 2
   shift: 0.1
-  speedUp: 0
+  speedUp: 0.1
 --- !u!1 &8829150776391733023
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   lifeDrop: 1
   theChildren: {fileID: 0}
   nChildren: 0
+  startSizeChildren: 0.5
   deathSmoke: {fileID: 5983421984252740010, guid: 61421428ac727ee4085d457dc4801f2f, type: 3}
   hitSmoke: {fileID: 0}
 --- !u!114 &6351873062531586972
