@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GroundMove : MonoBehaviour
 {
-    public float maxSpeed = 2f;
-    public float hitDistance = 1f;     // at what distance they hit the player
+    public float maxSpeed = 1f;
+    public float hitDistance = 0.5f;     // at what distance they hit the player
     public float maxDistance = 30f;    // at what distance they are out of the game
     public float sideMove = 0.2f;
     public float sideSpeed = 0.2f;

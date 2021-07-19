@@ -10,8 +10,9 @@ public class Damaged : MonoBehaviour
     public int bombDrop = 0;               // bonus bombs dropped on kill
     public int lifeDrop = 0;               // bonus lives dropped on kill
 
-    public GameObject theChildren = null;  // objects to spawn when destroyed (if not null)
+    public GameObject theChildren = null;  // child objects to spawn when destroyed (if not null)
     public int nChildren = 2;              // how many of them
+    public float startSizeChildren = 0.5f; // start size children
 
     public GameObject deathSmoke;          // particle effect produced when enemy dies
     public GameObject hitSmoke;            // particle effect produced when enemy gets hit
@@ -30,6 +31,12 @@ public class Damaged : MonoBehaviour
 
     void Update()
     {
+        // move to here the calculation for hitDistance and the logic to hit the player
+        // ...from AirMove & GroundMove
+        //Vector3 playerPos = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
+        //Vector3 vectorDistance = playerPos - this.transform.position; ;
+        //float distance = vectorDistance.magnitude;
+
         // if(health<criticalHealth) { // glow red or something ... }
     }
 
@@ -60,11 +67,16 @@ public class Damaged : MonoBehaviour
     public void OnDestroy()
     {
         // spawn child objects when destroyed at 0 health* (it avoids child spawning when destroyed by hitting player)
-        if ((theChildren != null) && (nChildren > 0) && (health <= 0))
+        if ((theChildren != null) && (nChildren > 0) && (health <= 0) && (health > -50))   // last condition is to avoid spawning after bomb
         {
+            GameObject[] children = new GameObject[nChildren];
             for (int i = 0; i < nChildren; i++)
             {
-                Instantiate(theChildren, this.transform.position, Quaternion.identity);
+                children[i] = Instantiate(theChildren, this.transform.position, Quaternion.identity);
+                if(children[i].GetComponent<GrowUp>() != null)
+                { 
+                    children[i].GetComponent<GrowUp>().startScale = startSizeChildren;
+                }
             }
         }
     }

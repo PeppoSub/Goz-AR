@@ -6,9 +6,9 @@ using TMPro;
 
 public class SetDifficulty : MonoBehaviour
 {
-    public int speedMultiplier = 3;    // percentage multiplier of basic enemy speed (1 to 10 = 10% to 1000%)
-    public int spawnFrequency = 3;     // sets spawn frequency every 3 seconds (1 to 30 = 0.33Hz to 10Hz)
-    public int missionGoal = 2;        // exponent in the power 3^(N-2) which multiplies the goal (1,2,3,4 = -1,0,1,2 = 0.33,1,3,9) 
+    public int speedMultiplier;    // percentage multiplier of basic enemy speed (1 to 15 = 33% to 500%)
+    public int spawnFrequency;     // sets spawn frequency evry 2 seconds (1 to 20 = 0.5Hz to 10Hz)
+    public int missionGoal;        // exponent in the power 3^(N-2) which multiplies the goal (1,2,3,4,5 = -1,0,1,2,3 = 0.33,1,3,9,27) 
 
     public Slider speedSlide;
     public Slider spawnSlide;
@@ -19,19 +19,22 @@ public class SetDifficulty : MonoBehaviour
     public TextMeshProUGUI goalTxt;
 
     //public float goalset =2;
-
+    private int defaultMultiplier = 3;    // percentage multiplier of basic enemy speed (1 to 15 = 33% to 500%)
+    private int defaultFrequency = 2;     // sets spawn frequency evry 2 seconds (1 to 20 = 0.5Hz to 10Hz)
+    private int defaultGoal = 2;          // exponent in the power 3^(N-2) which multiplies the goal (1,2,3,4,5 = -1,0,1,2,3 = 0.33,1,3,9,27) 
 
     void Start()
     {
         //ResetDifficultyLevel();   // stack overflow :)
 
-        speedMultiplier = PlayerPrefs.GetInt("speedMultiplier", -1);
-        spawnFrequency = PlayerPrefs.GetInt("spawnFrequency", -1);
-        missionGoal = PlayerPrefs.GetInt("missionGoal", -1);
+        if (PlayerPrefs.GetInt("speedMultiplier", -1) > 0) { speedMultiplier = PlayerPrefs.GetInt("speedMultiplier", -1); }
+        else { speedMultiplier = defaultMultiplier; }
 
-        if (speedMultiplier < 0) { speedMultiplier = 3; }
-        if (spawnFrequency < 0) { spawnFrequency = 1; }
-        if (missionGoal < 0) { missionGoal = 2; }
+        if (PlayerPrefs.GetInt("spawnFrequency", -1) > 0)  { spawnFrequency = PlayerPrefs.GetInt("spawnFrequency", -1); }
+        else { spawnFrequency = defaultFrequency; }
+
+        if (PlayerPrefs.GetInt("missionGoal", -1) > 0)     { missionGoal = PlayerPrefs.GetInt("missionGoal", -1); }
+        else { missionGoal = defaultGoal; }
 
         speedSlide.value = speedMultiplier;
         spawnSlide.value = spawnFrequency;
@@ -53,8 +56,8 @@ public class SetDifficulty : MonoBehaviour
         if (g != missionGoal) { Goal(g); }
 
         speedTxt.text = (((float)speedMultiplier / 3f)).ToString("n2") + " m/s";    // see GameStatus about multipliers conventions
-        spawnTxt.text = (((float)spawnFrequency / 2f)).ToString("n2") + " Hz";      // because the basic frequency is 1/2sec
-        goalTxt.text = (missionGoal - 1).ToString() + " xp";                        // and this because ...
+        spawnTxt.text = (((float)spawnFrequency / 2f)).ToString("n2") + " Hz";      // 
+        goalTxt.text = (missionGoal - 1).ToString() + " xp";                        // ...
 
     }
 

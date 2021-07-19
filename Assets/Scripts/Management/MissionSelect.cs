@@ -81,17 +81,17 @@ public class MissionSelect : MonoBehaviour
     {
         if (theParentName == "Level1")
         {
-            theTargetText.text = "Loading (Lev1) ...";
+            theTargetText.text = "Loading (Level 1) ...";
             SetCurrentMission(1);
         }
         else if (theParentName == "Level2")
         {
-            theTargetText.text = "Loading (Lev2) ...";
+            theTargetText.text = "Loading (Level 2) ...";
             SetCurrentMission(2);
         }
         else if (theParentName == "Level3")
         {
-            theTargetText.text = "Loading (Level3) ...";
+            theTargetText.text = "Loading (Level 3) ...";
             SetCurrentMission(3);
         }
         else if (theParentName == "Portal")

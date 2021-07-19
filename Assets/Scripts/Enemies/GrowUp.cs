@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrowUp : MonoBehaviour
 {
-    public float startScale = 0.01f;           // size when spawned (small)
+    public float startScale = 0.1f;            // size when spawned (small)
     public float finalScale = 1f;              // size it will grow to (1=original prefab size)
     public float growthDistance = 1f;          // the growth happens within this distance from the spawnig point
     public float growthPower = 1f;             // it controls the profile of growth speed (1=linear)
@@ -24,12 +24,14 @@ public class GrowUp : MonoBehaviour
 
     void Update()
     {
-        if(scale >= finalScale) { return; }
+        if (scale < finalScale)
+        { 
+            scale = startScale;
+            float distance = Vector3.Distance(theSpawnPoint, this.transform.position);
+            scale += finalScale * Mathf.Pow(distance / growthDistance, growthPower);
+            if (scale >= finalScale) { scale = finalScale; }
 
-        float distance = Vector3.Distance(theSpawnPoint, this.transform.position);
-        scale = finalScale * Mathf.Pow(distance / growthDistance, growthPower) ; 
-
-
-        this.transform.localScale = scale * originalScale;
+            this.transform.localScale = scale * originalScale;
+        }
     }
 }

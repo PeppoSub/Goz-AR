@@ -433,7 +433,7 @@ Transform:
   m_GameObject: {fileID: 3236969977178045566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_Children:
   - {fileID: 7953416172825495409}
   - {fileID: 4647858717141870788}
@@ -505,8 +505,11 @@ MonoBehaviour:
   maxHealth: 10
   criticalHealth: 3
   enemyScore: 1
+  bombDrop: 0
+  lifeDrop: 0
   theChildren: {fileID: 0}
   nChildren: 0
+  startSizeChildren: 0.5
   deathSmoke: {fileID: 1975141522878942813, guid: c76c8020c271b8f4f8b4a108d11501eb, type: 3}
   hitSmoke: {fileID: 0}
 --- !u!114 &-894836018836700544
@@ -521,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5558b209a93de69429df911c7ebdbb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScale: 0.01
+  startScale: 0.5
   finalScale: 1
   growthDistance: 1
   growthPower: 1.5
@@ -537,8 +540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6487cc5443579642a645260868ccc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1.5
-  hitDistance: 1
+  maxSpeed: 1.1
+  hitDistance: 0.5
   maxDistance: 30
   sideMove: 0.4
   sideSpeed: 0.2

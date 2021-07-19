@@ -1445,7 +1445,7 @@ MonoBehaviour:
   theCanvas: {fileID: 3407303984034126017}
   theObjectsToPlace:
   - {fileID: 5992691649689475551, guid: ec0cca0ecaa5b194ebc2d8bd020a8c26, type: 3}
-  - {fileID: 5863523973235140440, guid: f76a5614a0c324e4ca20d0d13269e163, type: 3}
+  - {fileID: 5863523973235140440, guid: 5aa92f5b0c9592c4a942e90d5f20ac16, type: 3}
   - {fileID: 8829150776391733023, guid: 9fc98f491ad5fbf459e4f8f3a780bb02, type: 3}
   - {fileID: 88337149376259163, guid: e9d00774af379c64aa0c113fd67c054b, type: 3}
   helpStep0: {fileID: 1530601048}
@@ -4719,6 +4719,10 @@ PrefabInstance:
     - target: {fileID: 3228824170741728230, guid: 4d7f8d72142a0684faedb0e20b9c953a, type: 3}
       propertyPath: m_Name
       value: BackAlways
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228824170741728230, guid: 4d7f8d72142a0684faedb0e20b9c953a, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4809311283620089773, guid: 4d7f8d72142a0684faedb0e20b9c953a, type: 3}
       propertyPath: m_Pivot.x

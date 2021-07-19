@@ -28,8 +28,8 @@ public class GameStatus : MonoBehaviour
     public static int nCompletions;       // how many time killed the boss (from PlayerPrefs)
 
     public static int speedMultiplier;    // 1/3 multiplier of basic enemy speed (1 to 15 = 0.33 to 5 m/s, normal = 3)
-    public static int spawnFrequency;     // sets spawn frequency every 2 seconds (1 to 20 = 0.5Hz to 10 Hz, normal = 2)
-    public static int missionGoal;        // exponent in the power 3^(N-2) which multiplies the goal (1,2,3,4 = -1,0,1,2 = 0.33,1,3,9, normal = 2) 
+    public static int spawnFrequency;     // sets spawn frequency every (1 to 20 = 0.5Hz to 10 Hz, normal = 2)
+    public static int missionGoal;        // exponent in the power 3^(N-2) which multiplies the goal (1,2,3,4,5 = -1,0,1,2,3 = 0.33,1,3,9,27 normal = 2) 
 
     public GameObject bloodyDamage;       // screen border when the player gets hit
     public GameObject brokenGlass;        // screen effect when game over
@@ -200,6 +200,7 @@ public class GameStatus : MonoBehaviour
         bloodyDamage.SetActive(false);
         shootButton.SetActive(false);
         bombButton.SetActive(false);
+        bombAnim.SetActive(false);
 
         // backButton.SetActive(true);   // always active
         restartButton.SetActive(true);
@@ -229,7 +230,10 @@ public class GameStatus : MonoBehaviour
     public void Score(int sc, int bd, int ld)
     {
         score += sc;
-        if (scoreAnim != null) { scoreAnim.SetActive(true); }
+        if (sc > 1)    // animation only for score > 2
+        {
+            if (scoreAnim != null) { scoreAnim.SetActive(true); }
+        }
         if (bd>0)
         {
             nBombs += bd;

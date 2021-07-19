@@ -257,8 +257,11 @@ MonoBehaviour:
   maxHealth: 10
   criticalHealth: 3
   enemyScore: 1
+  bombDrop: 0
+  lifeDrop: 0
   theChildren: {fileID: 0}
   nChildren: 0
+  startSizeChildren: 0.5
   deathSmoke: {fileID: 1975141522878942813, guid: 6260e17cecbc65640a310002c099e179, type: 3}
   hitSmoke: {fileID: 0}
 --- !u!114 &3801583594015317501
@@ -273,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5558b209a93de69429df911c7ebdbb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScale: 0.01
+  startScale: 0.5
   finalScale: 1
   growthDistance: 1
   growthPower: 1.5
@@ -290,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 1
-  hitDistance: 1
+  hitDistance: 0.5
   maxDistance: 30
   sideMove: 0.5
   sideSpeed: 0.2

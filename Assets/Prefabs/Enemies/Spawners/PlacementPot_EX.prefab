@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 6212495392158094403, guid: d626f3b0588008e49adc42967efb115b, type: 3}
   - {fileID: 7284725456837129716, guid: 8e5bf359f5d00044eb1fb3596857961c, type: 3}
   initSleep: 3
-  WaitTimeSeconds: 2
+  WaitTimeSeconds: 1
   shift: 0.1
   speedUp: 0.5
 --- !u!1 &5992691649689475551

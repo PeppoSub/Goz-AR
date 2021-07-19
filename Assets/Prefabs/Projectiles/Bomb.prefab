@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc0e19581f2ee247910779790ddd7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 101
   radius: 2.5
   force: 10
   explodeOnGround: 1
