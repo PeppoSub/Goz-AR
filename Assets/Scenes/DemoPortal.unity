@@ -866,7 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theRaycastManager: {fileID: 765297067}
   thePlaneManager: {fileID: 765297068}
-  thePlacementIndicatorPrefab: {fileID: 4856193321818079531, guid: 4b6ba2578df3a664989f0f24d97ca476, type: 3}
+  thePlacementIndicatorPrefab: {fileID: 993865437684313539, guid: 0fced518b04352044b80100bc34a0ba6, type: 3}
   theCanvas: {fileID: 3407303984034126017}
   theObjectsToPlace:
   - {fileID: 88337149376259163, guid: e9d00774af379c64aa0c113fd67c054b, type: 3}
