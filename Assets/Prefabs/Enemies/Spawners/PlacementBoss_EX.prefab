@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d290216acf457d34888dceec00e27b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
+  maxHealth: 666
   criticalHealth: 10
   enemyScore: 100
   bombDrop: 0

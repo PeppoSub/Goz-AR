@@ -10,7 +10,8 @@ public class LandPort : MonoBehaviour
     public GameObject portraitCamera;
     public float viewAngle = 0f;
     public TextMeshProUGUI theTargetText;
-    public string portraitMessage = "It plays better in landscape ...";
+    public string portraitMessage1 = "It plays better in Pandscape ...";
+    public string portraitMessage2 = "... but Portrait gives you more";
     //public string landscapeMessage = "";  // use originalText instead
 
     private Vector3 defaultCameraPos;
@@ -18,6 +19,7 @@ public class LandPort : MonoBehaviour
     private Quaternion defaultCameraRot;
     private Quaternion portraitCameraRot;
     private string originalText;
+    private string portraitMessage;
     //private bool portrait;
 
     void Start()
@@ -30,6 +32,10 @@ public class LandPort : MonoBehaviour
         portraitCameraRot = portraitCamera.transform.rotation;
 
         originalText = theTargetText.text;
+
+        int level3 = PlayerPrefs.GetInt("level3",0);   // change the displayed message when finished game
+        if (level3 > 0) { portraitMessage = portraitMessage2; }
+        else            { portraitMessage = portraitMessage1; }
     }
 
     void Update()

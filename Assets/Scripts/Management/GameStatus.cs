@@ -9,8 +9,8 @@ public class GameStatus : MonoBehaviour
 {
     // mission items into arrays, so I can dynamically select things based on level ... (portal: mission = 4)
     //private int[] weapons = { 0, 1, 2 , 3};      // weapon in use [for each mission] - object array is in WeaponScript.cs attached to PlayerHUD
-    private int[] goal = { 30, -1, -1, -1 };       // score goal [of each mission]
-    private int[] timelimit = { -1, 60, -1, -1 };  // timelimit (survival mode) [of each mission]
+    private int[] goal = { 66, -1, -1, -1 };       // score goal [of each mission]
+    private int[] timelimit = { -1, 66, -1, -1 };  // timelimit (survival mode) [of each mission]
     private int[] initbombs = { 0, 0, 1, 0 };      // bombs at start [of each mission]
     private int initlife = 3;                      // lives at start (plus completion bonus)
 

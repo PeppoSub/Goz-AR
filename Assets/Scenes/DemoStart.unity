@@ -1715,7 +1715,8 @@ MonoBehaviour:
   portraitCamera: {fileID: 824776420}
   viewAngle: 60
   theTargetText: {fileID: 2128287085}
-  portraitMessage: It plays better in landscape ...
+  portraitMessage1: It plays better in Pandscape ...
+  portraitMessage2: ... but Portrait gives you more
 --- !u!1 &589023265
 GameObject:
   m_ObjectHideFlags: 0
