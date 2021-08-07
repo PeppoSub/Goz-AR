@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 60017902}
   - component: {fileID: 60017906}
   - component: {fileID: 60017907}
+  - component: {fileID: 60017908}
   m_Layer: 5
   m_Name: Titles
   m_TagString: Untagged
@@ -276,6 +277,18 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c7a8e24b01cf73e4bad6eb3cb7d40acc, type: 2}
   - {fileID: 2100000, guid: ed1387202b1349540a5d6464f0f27488, type: 2}
   - {fileID: 2100000, guid: 528363c5c1cf6a7458140c6851c77b68, type: 2}
+--- !u!114 &60017908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60017901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92298fe1519977a4aa00396714f30a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &90687561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2508803079818082220, guid: 616fdaa7dbff40e4f91c695be15f9f4f, type: 3}
@@ -1715,8 +1728,8 @@ MonoBehaviour:
   portraitCamera: {fileID: 824776420}
   viewAngle: 60
   theTargetText: {fileID: 2128287085}
-  portraitMessage1: It plays better in Pandscape ...
-  portraitMessage2: ... but Portrait gives you more
+  portraitMessage1: It plays better in Landscape ...
+  portraitMessage2: ... but in Portrait you see more
 --- !u!1 &589023265
 GameObject:
   m_ObjectHideFlags: 0

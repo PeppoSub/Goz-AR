@@ -1215,8 +1215,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -420.00006}
-  m_SizeDelta: {x: 0, y: 839.9999}
+  m_AnchoredPosition: {x: 0, y: -480.00006}
+  m_SizeDelta: {x: 0, y: 959.9999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451347134
 MonoBehaviour:
@@ -1239,12 +1239,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<u><b>Goz-AR v1.0</b></u>\n\nan Augmenter Reality game demo \ndeveloped
-    in Unity 2020.3 \nwith AR-Foundation 4.1.7 \nand a bunch of free assets\n\nIt
-    is my first game. \nPlease, be gentle with me :)\n\n<i>it started as a totally
-    different idea, \nbut the Godz work in mysterious ways ...</i>\n\nIf you have
-    any suggestions or if you wish to participate to my next project, email me.\nEspecially
-    if you are a 3D artist.\n\nMy email:   pepposmart@gmail.com \nMy GitHub:   https://github.com/PeppoSub/\n\nThanks
-    for playing \nand look forward to my next creation!\n"
+    in Unity 2020.3 \nwith AR-Foundation 4.1.7 \nand a bunch of free assets\n\n<i>...
+    it started as a totally different idea, \nbut the Godz work in mysterious ways
+    ...</i>\n\nThis is my first mobile game. \nPlease, be gentle with me :)\n\nNot
+    even a game, just a demo of AR functionalities and my ability in using them.\nIf
+    you have any suggestions or ideas for \nfurther developments, email me. \nEspecially
+    if you are a 3D artist \nwilling to participate to my next project.\n\nMy email:  
+    pepposmart@gmail.com \nMy GitHub:   https://github.com/PeppoSub/\n\nThanks for
+    playing Goz-AR\nand stay tuned for my next creation!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
