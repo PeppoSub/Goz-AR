@@ -55,4 +55,60 @@ Get started:
  File --> Build Settings --> Player Settings ... --> XR Plug-in Management --> (x) AR Core 
                                                                                (x) Initialize XR on Startup
 
+ File --> Build Settings --> Player Settings ... --> Player --> Other Settings --> Allow 'unsafe' code 
 
+
+---
+
+Company Name:      PeppoDev
+Product Name:      Goz-AR
+Version:           1.0 
+
+Identification --> Package name: com.PeppoDev.GozAR
+
+---
+
+user.keystore:   cammello12
+
+alias:  gozargame
+pw:     gozargame12
+organization:  PeppoDev
+country:   Italy (IT)
+
+---
+
+new.keystore:   cammello13
+
+alias:  gozargameagain
+pw:     gozargame13
+organization:  PeppoDev
+country code:   IT
+
+---
+
+<u><b>Goz-AR v1.0</b></u>
+
+an Augmenter Reality game demo 
+developed in Unity 2020.3 
+with AR-Foundation 4.1.7 
+and a bunch of free assets
+
+<i>... it started as a totally different idea, 
+but the Godz work in mysterious ways ...</i>
+
+This is my first mobile game. 
+Please, be gentle with me :)
+
+Not even a game, just a demo of AR functionalities and my ability in using them.
+If you have any suggestions or ideas for 
+further developments, email me. 
+Especially if you are a 3D artist 
+willing to participate to my next project.
+
+My email:   pepposmart@gmail.com 
+My GitHub:   https://github.com/PeppoSub/
+
+Thanks for playing Goz-AR
+and stay tuned for my next creation!
+
+---
